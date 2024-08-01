@@ -1,0 +1,20 @@
+Sub leeren()
+Sheets("Liste AN Bausteine").Range("AF7:AG507").ClearContents
+Sheets("Liste AN Bausteine").Range("AL7:BV507").ClearContents
+Sheets("Liste AN Bausteine").Range("AD7:AD507").ClearContents
+Sheets("Liste AN Bausteine").Range("BZ7:BZ507").ClearContents
+Sheets("Liste AN Bausteine").Range("CC7:CC507").ClearContents
+Sheets("Liste AN Bausteine").Range("E3:E4").ClearContents
+Sheets("Liste AN Bausteine").Range("O3:O4").ClearContents
+i = 1
+zzzz = 38
+
+For i = 1 To 37
+ausblenden = Sheets("Daten2").Cells(i, 16).Text
+If Sheets("Liste AN Bausteine").Cells(5, zzzz).value = 0 Then Sheets("Liste AN Bausteine").Range(ausblenden & ":" & ausblenden).EntireColumn.Hidden = True
+zzzz = zzzz + 1
+Next i
+Sheets("Liste AN Bausteine").Range("U:U").EntireColumn.Hidden = True
+' Sheets("Liste AN Bausteine").Range("X:X").EntireColumn.Hidden = True
+
+End Sub

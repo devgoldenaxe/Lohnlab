@@ -1,0 +1,140 @@
+Sub Faktoren()
+
+
+10      Dim brutto, nettoalt, nettoneu, netto37 As Single
+
+20      Dim intFirstRow, intLastRow As Long
+30      Dim iii As Integer
+40      Dim stkl As Long
+50      Dim faktor As Single
+60      Dim Aufschlag As Double
+70      Dim marbeit As Double
+80      Dim prozent As Double
+90      Dim kosten As Single
+100     Dim kosten2 As String
+110     Dim bav As Double
+120     Dim lng_a As Long
+130     Dim aaa As Long
+140     Dim bbb As Long
+150     Dim cb2, cb3, cb4, cb5, cb6, cb7, cbsum As Single
+160     Dim lauf, zeile, aa, bb As Long
+        Dim zelle As Range
+
+On Error GoTo handling
+
+iii = 7
+
+
+280     Worksheets("Liste AN Bausteine").Select
+
+        Range("CT7:DF507").Select
+        For Each zelle In Selection
+        zelle.value = Trim(zelle.value)
+        zelle = zelle * 1
+        Next zelle
+
+        Range("S7").Select
+
+290     intFirstRow = 7
+300     intLastRow = findlastrow(5)
+
+
+
+310     ' ActiveSheet.Outline.ShowLevels RowLevels:=0, ColumnLevels:=3
+320     Application.ScreenUpdating = False
+
+
+
+        For iii = intFirstRow To intLastRow
+        
+350     aaa = intLastRow - 6
+360     bbb = i - 6
+
+
+500     brutto = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 15).value + Worksheets("Liste AN Bausteine").Cells(intFirstRow, 88).value + Worksheets("Liste AN Bausteine").Cells(intFirstRow, 89).value + Worksheets("Liste AN Bausteine").Cells(intFirstRow, 90).value
+510     stkl = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 16).value
+
+520     If stkl = 0 Then
+        stkl = 1
+        Worksheets("Liste AN Bausteine").Cells(intFirstRow, 16).value = 1
+        End If
+
+
+530     If brutto = 0 Then
+        brutto = 3000
+        Worksheets("Liste AN Bausteine").Cells(intFirstRow, 15).value = 3000
+        End If
+
+lauf = 1
+aa = 98
+bb = 6
+For lauf = 1 To 13
+If Worksheets("Liste AN Bausteine").Cells(intFirstRow, aa).value = "" Then Worksheets("Liste AN Bausteine").Cells(intFirstRow, aa).value = Sheets("Eingabe").Cells(bb, 7).value
+aa = aa + 1
+bb = bb + 1
+Next lauf
+
+
+720
+730      ' Originalabrechnung übergeben
+800         If Sheets("Eingabe").Visible = False Then Sheets("Eingabe").Visible = True
+810         Sheets("Eingabe").Select
+820         Sheets("Eingabe").Range("B5") = stkl
+
+lauf = 1
+aa = 98
+bb = 6
+For lauf = 1 To 13
+Sheets("Eingabe").Cells(bb, 2).value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, aa).value
+aa = aa + 1
+bb = bb + 1
+Next lauf
+
+If Sheets("Eingabe").Cells(8, 2).value > 0 Then Sheets("Eingabe").Cells(13, 2).value = 0
+
+
+830         Sheets("Eingabe").Range("B3") = brutto
+840         Sheets("Eingabe").Range("B27").Select
+850         nettoalt = Sheets("Eingabe").Range("B27").value   ' ursprüngliche netto ermittelt
+860
+            If Worksheets("Liste AN Bausteine").Cells(intFirstRow, 80).value = 0 Or Worksheets("Liste AN Bausteine").Cells(intFirstRow, 80).value = "" Then
+            Sheets("Eingabe").Range("B3").value = brutto
+            Else
+880         Sheets("Eingabe").Range("B3").value = brutto + Worksheets("Liste AN Bausteine").Cells(intFirstRow, 80).value
+            End If
+890         Worksheets("Faktor3").Range("I2").value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 80).value
+
+1170
+1180        Worksheets("Eingabe").Range("B27").Select
+1190        nettoneu = Worksheets("Eingabe").Range("B27").value   ' neues netto ermittelt
+
+
+
+1200    If Sheets("Eingabe").Visible = True Then Sheets("Eingabe").Visible = False
+1210    Worksheets("Faktor3").Range("B2").value = brutto
+1220    Worksheets("Faktor3").Range("A2").value = stkl
+1230    Worksheets("Faktor3").Range("C2").value = nettoalt
+1240    Worksheets("Faktor3").Range("E2").value = nettoneu
+
+        Worksheets("Liste AN Bausteine").Cells(intFirstRow, 17).value = Worksheets("Faktor3").Range("K2").value
+
+intFirstRow = intFirstRow + 1
+
+1290    Next iii
+
+Worksheets("Liste AN Bausteine").Select
+
+If Sheets("Eingabe").Visible = True Then Sheets("Eingabe").Visible = False
+If Sheets("Berechnung").Visible = True Then Sheets("Berechnung").Visible = False
+If Sheets("Faktor3").Visible = True Then Sheets("Faktor3").Visible = False
+
+
+Application.ScreenUpdating = True
+
+Exit Sub
+
+handling:
+Application.Visible = True
+
+
+End Sub

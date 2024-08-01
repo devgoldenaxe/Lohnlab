@@ -1,0 +1,421 @@
+Sub drucken()
+10      Dim brutto, nettoalt, nettoneu, netto37, brutto2 As Single
+
+20      Dim intFirstRow, intLastRow As Long
+30      Dim iii, i As Integer
+40      Dim stkl As Long
+50      Dim faktor As Single
+60      Dim Aufschlag As Double
+70      Dim marbeit As Double
+80      Dim prozent As Double
+90      Dim kosten As Single
+100     Dim kosten2, eingabe, nurSteuer As String
+110     Dim bav As Double
+120     Dim lng_a As Long
+130     Dim aaa As Long
+140     Dim bbb As Long
+150     Dim cb2, cb3, cb4, cb5, cb6, cb7, cbsum As Single
+160     Dim lauf, zeile, aa, bb As Long
+
+MsgBox "vergleichende Gehaltsabrechnungen werden im Pfad dieses Rechners als einzelne pdf gespeichert, wählen Sie im Anschluss optionale Kartenladungen"
+
+280     Worksheets("Liste AN Bausteine").Select
+290     intFirstRow = 7
+300     intLastRow = findlastrow(5)
+
+Sheets("Steuer").Range("A1:D507").ClearContents
+
+nurSteuer = InputBox("nur Steuersatz aktualisieren?" & vbNewLine & vbNewLine & vbNewLine & "als Eingabe ist nur zulässig:     ja / nein", "nur Steuersatz?", "nein")
+   
+
+
+' Handy
+If Worksheets("Liste AN Bausteine").Range("AN5").value > 0 Then
+eingabe = InputBox("Baustein Handy auf Karte laden?" & vbNewLine & vbNewLine & vbNewLine & "als Eingabe ist nur zulässig:     ja / nein", "Kartenladung für verwendeten Baustein?", "nein")
+    If eingabe = "ja" Then
+    iii = 7
+    intFirstRow = 7
+        For iii = intFirstRow To intLastRow
+        Worksheets("Liste AN Bausteine").Cells(intFirstRow, 41).value = "ja"
+        intFirstRow = intFirstRow + 1
+        Next iii
+    End If
+End If
+
+
+' garage
+If Worksheets("Liste AN Bausteine").Range("AR5").value > 0 Then
+eingabe = InputBox("Baustein Garage auf Karte laden?" & vbNewLine & vbNewLine & vbNewLine & "als Eingabe ist nur zulässig:     ja / nein", "Kartenladung für verwendeten Baustein?", "nein")
+    If eingabe = "ja" Then
+    iii = 7
+    intFirstRow = 7
+        For iii = intFirstRow To intLastRow
+        Worksheets("Liste AN Bausteine").Cells(intFirstRow, 45).value = "ja"
+        intFirstRow = intFirstRow + 1
+        Next iii
+    End If
+End If
+
+
+' Fehlgeld
+If Worksheets("Liste AN Bausteine").Range("AT5").value > 0 Then
+eingabe = InputBox("Baustein Fehlgeld auf Karte laden?" & vbNewLine & vbNewLine & vbNewLine & "als Eingabe ist nur zulässig:     ja / nein", "Kartenladung für verwendeten Baustein?", "nein")
+    If eingabe = "ja" Then
+    iii = 7
+    intFirstRow = 7
+        For iii = intFirstRow To intLastRow
+        Worksheets("Liste AN Bausteine").Cells(intFirstRow, 47).value = "ja"
+        intFirstRow = intFirstRow + 1
+        Next iii
+    End If
+End If
+
+' Verpflegung
+If Worksheets("Liste AN Bausteine").Range("AT5").value > 0 Then
+eingabe = InputBox("Baustein Verpflegungsmehraufwand auf Karte laden?" & vbNewLine & vbNewLine & vbNewLine & "als Eingabe ist nur zulässig:     ja / nein", "Kartenladung für verwendeten Baustein?", "nein")
+    If eingabe = "ja" Then
+    iii = 7
+    intFirstRow = 7
+        For iii = intFirstRow To intLastRow
+        Worksheets("Liste AN Bausteine").Cells(intFirstRow, 56).value = "ja"
+        intFirstRow = intFirstRow + 1
+        Next iii
+    End If
+End If
+
+
+' KiGa
+If Worksheets("Liste AN Bausteine").Range("BI5").value > 0 Then
+eingabe = InputBox("Baustein Kindergarten auf Karte laden?" & vbNewLine & vbNewLine & vbNewLine & "als Eingabe ist nur zulässig:     ja / nein", "Kartenladung für verwendeten Baustein?", "nein")
+    If eingabe = "ja" Then
+    iii = 7
+    intFirstRow = 7
+        For iii = intFirstRow To intLastRow
+        Worksheets("Liste AN Bausteine").Cells(intFirstRow, 62).value = "ja"
+        intFirstRow = intFirstRow + 1
+        Next iii
+    End If
+End If
+
+' Fahrtkosten
+If Worksheets("Liste AN Bausteine").Range("BK5").value > 0 Then
+eingabe = InputBox("Baustein Fahrtkosten auf Karte laden?" & vbNewLine & vbNewLine & vbNewLine & "als Eingabe ist nur zulässig:     ja / nein", "Kartenladung für verwendeten Baustein?", "nein")
+    If eingabe = "ja" Then
+    iii = 7
+    intFirstRow = 7
+        For iii = intFirstRow To intLastRow
+        Worksheets("Liste AN Bausteine").Cells(intFirstRow, 64).value = "ja"
+        intFirstRow = intFirstRow + 1
+        Next iii
+    End If
+End If
+
+' Internet
+If Worksheets("Liste AN Bausteine").Range("BM5").value > 0 Then
+eingabe = InputBox("Baustein Internet auf Karte laden?" & vbNewLine & vbNewLine & vbNewLine & "als Eingabe ist nur zulässig:     ja / nein", "Kartenladung für verwendeten Baustein?", "nein")
+    If eingabe = "ja" Then
+    iii = 7
+    intFirstRow = 7
+        For iii = intFirstRow To intLastRow
+        Worksheets("Liste AN Bausteine").Cells(intFirstRow, 66).value = "ja"
+        intFirstRow = intFirstRow + 1
+        Next iii
+    End If
+End If
+
+With app
+.ProgressBar1.value = 15
+.ProgressBar1.Visible = True
+End With
+
+
+iii = 7
+intFirstRow = 7
+
+320     Application.ScreenUpdating = False
+
+
+        For iii = intFirstRow To intLastRow
+        
+lauf = 1
+aa = 98
+bb = 6
+For lauf = 1 To 13
+If Worksheets("Liste AN Bausteine").Cells(intFirstRow, aa).value = "" Then Worksheets("Liste AN Bausteine").Cells(intFirstRow, aa).value = Sheets("Eingabe").Cells(bb, 7).value
+aa = aa + 1
+bb = bb + 1
+Next lauf
+        
+        
+        
+        
+        
+Sheets("Gehalt").Range("B4").value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 3).value
+Sheets("Gehalt").Range("C4").value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 9).value
+Sheets("Gehalt").Range("D4").value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 16).value
+Sheets("Gehalt").Range("E4").value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 98).value
+Sheets("Gehalt").Range("F4").value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 100).value
+Sheets("Gehalt").Range("G4").value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 101).value
+Sheets("Gehalt").Range("H4").value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 110).value
+Sheets("Gehalt").Range("J4").value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 99).value
+Sheets("Gehalt").Range("E6").value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 102).value & " / " & Worksheets("Liste AN Bausteine").Cells(intFirstRow, 103).value
+    If Worksheets("Liste AN Bausteine").Cells(intFirstRow, 105).value = 1 Then
+    Sheets("Gehalt").Range("F6").value = "ja"
+    Else
+    Sheets("Gehalt").Range("F6").value = "nein"
+    End If
+Sheets("Gehalt").Range("C9").value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 4).value & " " & Worksheets("Liste AN Bausteine").Cells(intFirstRow, 5).value
+Sheets("Gehalt").Range("C10").value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 6).value
+Sheets("Gehalt").Range("C11").value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 7).value & " " & Worksheets("Liste AN Bausteine").Cells(intFirstRow, 8).value
+Sheets("Gehalt").Range("K17").value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 15).value
+Sheets("Gehalt").Range("M17").value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 15).value
+
+Sheets("Gehalt").Range("K36").value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 88).value
+Sheets("Gehalt").Range("K37").value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 89).value
+Sheets("Gehalt").Range("K38").value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 90).value
+Sheets("Gehalt").Range("K39").value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 91).value
+Sheets("Gehalt").Range("M36").value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 93).value
+Sheets("Gehalt").Range("M37").value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 94).value
+Sheets("Gehalt").Range("M38").value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 95).value
+Sheets("Gehalt").Range("M39").value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 96).value
+Sheets("Gehalt").Range("K54").value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 92).value
+Sheets("Gehalt").Range("M54").value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 97).value
+
+' Sachbezug
+If Worksheets("Liste AN Bausteine").Cells(intFirstRow, 38).value > 0 Then
+Sheets("Gehalt").Range("E18").value = Round(Worksheets("Liste AN Bausteine").Cells(intFirstRow, 38).value, 2)
+Sheets("Gehalt").Range("F18").value = 1
+Sheets("Gehalt").Range("M52").value = Round(Sheets("Gehalt").Range("M52").value - Worksheets("Liste AN Bausteine").Cells(intFirstRow, 38).value, 2)
+Else
+Sheets("Gehalt").Range("E18").value = 0
+Sheets("Gehalt").Range("F18").value = 0
+End If
+
+' Garage
+If Worksheets("Liste AN Bausteine").Cells(intFirstRow, 44).value > 0 Then
+Sheets("Gehalt").Range("E23").value = Round(Worksheets("Liste AN Bausteine").Cells(intFirstRow, 44).value, 2)
+Sheets("Gehalt").Range("F23").value = 1
+    If Worksheets("Liste AN Bausteine").Cells(intFirstRow, 45).value = "ja" Then
+    Sheets("Gehalt").Range("M52").value = Round(Sheets("Gehalt").Range("M52").value - Worksheets("Liste AN Bausteine").Cells(intFirstRow, 44).value, 2)
+    End If
+Else
+Sheets("Gehalt").Range("E23").value = 0
+Sheets("Gehalt").Range("F23").value = 0
+End If
+
+' Fehlgeld
+If Worksheets("Liste AN Bausteine").Cells(intFirstRow, 46).value > 0 Then
+Sheets("Gehalt").Range("E24").value = Round(Worksheets("Liste AN Bausteine").Cells(intFirstRow, 46).value, 2)
+Sheets("Gehalt").Range("F24").value = 1
+    If Worksheets("Liste AN Bausteine").Cells(intFirstRow, 47).value = "ja" Then
+    Sheets("Gehalt").Range("M52").value = Round(Sheets("Gehalt").Range("M52").value - Worksheets("Liste AN Bausteine").Cells(intFirstRow, 46).value, 2)
+    End If
+Else
+Sheets("Gehalt").Range("E24").value = 0
+Sheets("Gehalt").Range("F24").value = 0
+End If
+
+' Verpflegung
+If Worksheets("Liste AN Bausteine").Cells(intFirstRow, 55).value > 0 Then
+Sheets("Gehalt").Range("E26").value = Round(Worksheets("Liste AN Bausteine").Cells(intFirstRow, 53).value, 2)
+Sheets("Gehalt").Range("F26").value = Round(Worksheets("Liste AN Bausteine").Cells(intFirstRow, 54).value, 0)
+    If Worksheets("Liste AN Bausteine").Cells(intFirstRow, 56).value = "ja" Then
+    Sheets("Gehalt").Range("M52").value = Round(Sheets("Gehalt").Range("M52").value - Worksheets("Liste AN Bausteine").Cells(intFirstRow, 55).value, 2)
+    End If
+Else
+Sheets("Gehalt").Range("E26").value = 0
+Sheets("Gehalt").Range("F26").value = 0
+End If
+
+' CL
+If Worksheets("Liste AN Bausteine").Cells(intFirstRow, 50).value > 0 Then
+Sheets("Gehalt").Range("E19").value = Round(Worksheets("Liste AN Bausteine").Cells(intFirstRow, 48).value, 2)
+Sheets("Gehalt").Range("F19").value = Round(Worksheets("Liste AN Bausteine").Cells(intFirstRow, 49).value, 0)
+Else
+Sheets("Gehalt").Range("E19").value = 0
+Sheets("Gehalt").Range("F19").value = 0
+End If
+
+' Handy
+If Worksheets("Liste AN Bausteine").Cells(intFirstRow, 40).value > 0 Then
+Sheets("Gehalt").Range("E28").value = Round(Worksheets("Liste AN Bausteine").Cells(intFirstRow, 40).value, 2)
+Sheets("Gehalt").Range("F28").value = 1
+    If Worksheets("Liste AN Bausteine").Cells(intFirstRow, 41).value = "ja" Then
+    Sheets("Gehalt").Range("M52").value = Round(Sheets("Gehalt").Range("M52").value - Worksheets("Liste AN Bausteine").Cells(intFirstRow, 40).value, 2)
+    End If
+Else
+Sheets("Gehalt").Range("E28").value = 0
+Sheets("Gehalt").Range("F28").value = 0
+End If
+
+' Kindergarten
+If Worksheets("Liste AN Bausteine").Cells(intFirstRow, 61).value > 0 Then
+Sheets("Gehalt").Range("E29").value = Round(Worksheets("Liste AN Bausteine").Cells(intFirstRow, 61).value, 2)
+Sheets("Gehalt").Range("F29").value = 1
+    If Worksheets("Liste AN Bausteine").Cells(intFirstRow, 62).value = "ja" Then
+    Sheets("Gehalt").Range("M52").value = Round(Sheets("Gehalt").Range("M52").value - Worksheets("Liste AN Bausteine").Cells(intFirstRow, 61).value, 2)
+    End If
+Else
+Sheets("Gehalt").Range("E29").value = 0
+Sheets("Gehalt").Range("F29").value = 0
+End If
+
+' Internet
+If Worksheets("Liste AN Bausteine").Cells(intFirstRow, 65).value > 0 Then
+Sheets("Gehalt").Range("E30").value = Round(Worksheets("Liste AN Bausteine").Cells(intFirstRow, 65).value, 2)
+Sheets("Gehalt").Range("F30").value = 1
+    If Worksheets("Liste AN Bausteine").Cells(intFirstRow, 66).value = "ja" Then
+    Sheets("Gehalt").Range("M52").value = Round(Sheets("Gehalt").Range("M52").value - Worksheets("Liste AN Bausteine").Cells(intFirstRow, 65).value, 2)
+    End If
+Else
+Sheets("Gehalt").Range("E30").value = 0
+Sheets("Gehalt").Range("F30").value = 0
+End If
+
+
+' Fahrtkosten
+If Worksheets("Liste AN Bausteine").Cells(intFirstRow, 63).value > 0 Then
+Sheets("Gehalt").Range("E31").value = Round(Worksheets("Liste AN Bausteine").Cells(intFirstRow, 63).value, 2)
+Sheets("Gehalt").Range("F31").value = 1
+    If Worksheets("Liste AN Bausteine").Cells(intFirstRow, 64).value = "ja" Then
+    Sheets("Gehalt").Range("M52").value = Round(Sheets("Gehalt").Range("M52").value - Worksheets("Liste AN Bausteine").Cells(intFirstRow, 63).value, 2)
+    End If
+Else
+Sheets("Gehalt").Range("E31").value = 0
+Sheets("Gehalt").Range("F31").value = 0
+End If
+
+
+' Werbung
+If Worksheets("Liste AN Bausteine").Cells(intFirstRow, 42).value > 0 Then
+    Sheets("Gehalt").Range("M60").value = Round(Sheets("Gehalt").Range("M60").value + Worksheets("Liste AN Bausteine").Cells(intFirstRow, 42).value, 2)
+Else
+Sheets("Gehalt").Range("M60").value = 0
+End If
+
+
+
+
+If Sheets("Gehalt").Range("K36").value <> "" Then Sheets("Gehalt").Range("E36").value = 1
+If Sheets("Gehalt").Range("K37").value <> "" Then Sheets("Gehalt").Range("E37").value = 1
+If Sheets("Gehalt").Range("K38").value <> "" Then Sheets("Gehalt").Range("E38").value = 1
+If Sheets("Gehalt").Range("K39").value <> "" Then Sheets("Gehalt").Range("E39").value = 1
+If Sheets("Gehalt").Range("M36").value <> "" Then Sheets("Gehalt").Range("E36").value = 1
+If Sheets("Gehalt").Range("M37").value <> "" Then Sheets("Gehalt").Range("E37").value = 1
+If Sheets("Gehalt").Range("M38").value <> "" Then Sheets("Gehalt").Range("E38").value = 1
+If Sheets("Gehalt").Range("M39").value <> "" Then Sheets("Gehalt").Range("E39").value = 1
+
+        
+        
+350     aaa = intLastRow - 6
+360     bbb = i - 6
+
+
+500     brutto = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 15).value + Worksheets("Liste AN Bausteine").Cells(intFirstRow, 88).value + Worksheets("Liste AN Bausteine").Cells(intFirstRow, 89).value + Worksheets("Liste AN Bausteine").Cells(intFirstRow, 90).value
+        brutto2 = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 15).value + Worksheets("Liste AN Bausteine").Cells(intFirstRow, 93).value + Worksheets("Liste AN Bausteine").Cells(intFirstRow, 94).value + Worksheets("Liste AN Bausteine").Cells(intFirstRow, 95).value
+
+
+510     stkl = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 16).value
+
+720
+730      ' Originalabrechnung übergeben
+800         If Sheets("Eingabe").Visible = False Then Sheets("Eingabe").Visible = True
+810         Sheets("Eingabe").Select
+820         Sheets("Eingabe").Range("B5") = stkl
+            lauf = 1
+            aa = 98
+            bb = 6
+            For lauf = 1 To 13
+            Sheets("Eingabe").Cells(bb, 2).value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, aa).value
+            aa = aa + 1
+            bb = bb + 1
+            Next lauf
+
+            If Sheets("Eingabe").Cells(8, 2).value > 0 Then Sheets("Eingabe").Cells(13, 2).value = 0
+
+830         Sheets("Eingabe").Range("B3") = brutto
+840         Sheets("Eingabe").Range("B27").Select
+
+Sheets("Gehalt").Range("E43").value = Sheets("Eingabe").Range("B19")
+Sheets("Gehalt").Range("F43").value = Sheets("Eingabe").Range("B21")
+Sheets("Gehalt").Range("H43").value = Sheets("Eingabe").Range("B20")
+Sheets("Gehalt").Range("G47").value = Sheets("Eingabe").Range("B23")
+Sheets("Gehalt").Range("H47").value = Sheets("Eingabe").Range("B22")
+Sheets("Gehalt").Range("I47").value = Sheets("Eingabe").Range("B25")
+Sheets("Gehalt").Range("J47").value = Sheets("Eingabe").Range("B24")
+
+         Sheets("Eingabe").Range("B3") = brutto2
+         Sheets("Eingabe").Range("B27").Select
+
+Sheets("Gehalt").Range("E44").value = Sheets("Eingabe").Range("B19")
+Sheets("Gehalt").Range("F44").value = Sheets("Eingabe").Range("B21")
+Sheets("Gehalt").Range("H44").value = Sheets("Eingabe").Range("B20")
+Sheets("Gehalt").Range("G48").value = Sheets("Eingabe").Range("B23")
+Sheets("Gehalt").Range("H48").value = Sheets("Eingabe").Range("B22")
+Sheets("Gehalt").Range("I48").value = Sheets("Eingabe").Range("B25")
+Sheets("Gehalt").Range("J48").value = Sheets("Eingabe").Range("B24")
+
+Sheets("Steuer").Cells(intFirstRow, 1).value = Sheets("Gehalt").Range("K17").value
+Sheets("Steuer").Cells(intFirstRow, 2).value = Sheets("Gehalt").Range("E43").value
+Sheets("Steuer").Cells(intFirstRow, 3).value = Sheets("Gehalt").Range("M17").value
+Sheets("Steuer").Cells(intFirstRow, 4).value = Sheets("Gehalt").Range("E44").value
+
+
+
+Sheets("Gehalt").Select
+For i = 18 To 39
+
+        If Cells(i, 5) = 0 Or Cells(i, 5) = "" Then
+        Rows(i).Hidden = True
+        Else
+        Rows(i).Hidden = False
+        End If
+
+Next i
+
+
+If nurSteuer <> "ja" Then
+
+            ' ChDir "C:\Users\Friedemann\Desktop"                             '  pdf erstellen und speichern
+            ActiveSheet.ExportAsFixedFormat Type:=xlTypePDF, Filename:= _
+            ThisWorkbook.Path & "\" & Worksheets("Liste AN Bausteine").Cells(intFirstRow, 5).value & "_" & Worksheets("Liste AN Bausteine").Cells(intFirstRow, 4).value & "_" & Worksheets("Liste AN Bausteine").Cells(intFirstRow, 3).value & ".pdf", Quality:=xlQualityStandard, _
+            IncludeDocProperties:=True, IgnorePrintAreas:=False, OpenAfterPublish:=False
+
+End If
+
+Sheets("Gehalt").Range("E37").value = 0
+Sheets("Gehalt").Range("E38").value = 0
+Sheets("Gehalt").Range("E39").value = 0
+Sheets("Gehalt").Range("M52").value = 0
+Sheets("Gehalt").Range("M53").value = 0
+Sheets("Gehalt").Range("M60").value = 0
+
+
+intFirstRow = intFirstRow + 1
+For i = 18 To 39
+        Rows(i).Hidden = False
+Next i
+
+With app
+.ProgressBar1.value = .ProgressBar1.value + 5
+.ProgressBar1.Visible = True
+End With
+
+
+1290    Next iii
+
+
+
+
+Worksheets("Liste AN Bausteine").Select
+If Sheets("Eingabe").Visible = True Then Sheets("Eingabe").Visible = False
+If Sheets("Eingabe").Visible = True Then Sheets("Eingabe").Visible = False
+If Sheets("Berechnung").Visible = True Then Sheets("Berechnung").Visible = False
+If Sheets("Faktor3").Visible = True Then Sheets("Faktor3").Visible = False
+
+
+Application.ScreenUpdating = True
+
+End Sub
+
+

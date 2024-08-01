@@ -1,0 +1,7 @@
+Sub Wunschnetto()
+Sheets("Eingabe").Activate
+    Range("B27").Select
+    Range("B27").GoalSeek Goal:=Range("B2"), ChangingCell:=Range("B3")
+    Range("B2").Select
+End Sub
+
