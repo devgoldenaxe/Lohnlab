@@ -2,14 +2,14 @@ function frame16() {
     const data = [
         {
             "Dienstwagen ?  Ja/nein": "ja",
-            "einfache Entfernung": "",
-            "JobTicket vorhanden?": " ",
+            "km Heim / Büro einfache Entfernung": "",
+            "JobTicket vorhanden? Ja / nein": " ",
             "Wochenarbeitstage ?": 33,
             "Prämie / Zuwendung": " ",
-            "berechnet?": "brutto",
+            "aus netto / brutto berechnet?": "brutto",
             "netto Korrektur Faktor": 1.05,
             "kalkulierte brutto Zuwendung": 0,
-            18.6: "",
+            18.6: 18.6,
         },
     ];
 
