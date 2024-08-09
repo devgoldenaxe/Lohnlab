@@ -18,6 +18,7 @@ function frame16() {
             J3: 20,
             J1: 22,
             J2: [8, 9],
+            J4: 10,
             J5: [1, 28],
         },
     ];
@@ -155,8 +156,11 @@ function frame16() {
                 2;
 
             if (data[i]["kalkulierte brutto Zuwendung"] > 0) {
-                
-                data[i]["18.6"] = ((data[i]["kalkulierte brutto Zuwendung"] - data[i]["nicht verteilt brutto"] ) * 18.5) / 100;
+                data[i]["18.6"] =
+                    ((data[i]["kalkulierte brutto Zuwendung"] -
+                        data[i]["nicht verteilt brutto"]) *
+                        18.5) /
+                    100;
             }
         }
 
