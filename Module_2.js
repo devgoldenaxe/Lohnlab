@@ -53,6 +53,8 @@ let data = [
   },
 ];
 
+console.log("test - ", data[0]["BI"]);
+
 function processBS(BS) {
   let Daten = {
     T1: 7.23,
@@ -63,66 +65,55 @@ function processBS(BS) {
 
   for (let i = 0; i < data.length; i++) {
     let gesamt = data[i]["R"]; // Initial amount
-    let BS_result;
+    let BS_result = 0;
     let spalte;
 
     // Determine BS_result and spalte based on the value of BS
+    console.log(BS);
     switch (BS) {
       case "Sachbezug":
         BS_result = 50 - (data[i]["AL"] - data[i]["Z"]);
-        spalte = 38;
-        console.log("BS_result", BS_result);
+        spalte = "AL";
+        //console.log("BS_result", BS_result);
         break;
       case "Handy":
         BS_result = data[i]["T"] - data[i]["AN"];
-        spalte = 40;
+        spalte = "AN";
         break;
       case "Internet":
         BS_result = 50 - data[i]["BM"];
-        spalte = 65;
+        spalte = "BM";
         break;
       case "CleverLunch":
         BS_result = data[i]["Y"] * Daten.T1 * Daten.T1 - data[i]["AX"];
-        spalte = 50;
+        spalte = "AX";
         break;
       case "Werbung":
         BS_result = 21 - data[i]["AP"];
-        spalte = 42;
+        spalte = "AP";
         break;
       case "Garage":
         BS_result = 40 - data[i]["AR"];
-        spalte = 44;
+        spalte = "AR";
         break;
       case "Fehlgeld":
         BS_result = 16 - data[i]["AT"];
-        spalte = 46;
+        spalte = "AT";
         break;
       case "Fahrkosten":
-        spalte = 63;
+        spalte = "BK";
         break;
       case "Kindergarten":
-        spalte = 61;
+        spalte = "BI";
         break;
       case "Verpflegungsmehraufwand":
         BS_result = data[i]["Y"] * Daten.T3 * Daten.T4 - data[i]["BC"];
-        spalte = 55;
+        spalte = "BC";
 
         break;
-      default:
-        for (let j = 0; j < data.length; j++) {
-          if (data[j]["AF"] > 0 && data[j]["U"] > 0) {
-            if (data[j]["AF"] > data[j]["U"]) {
-              data[j]["BI"] = data[j]["U"];
-              data[j]["AF"] -= data[j]["BI"];
-            } else {
-              data[j]["BI"] = data[j]["AF"];
-              data[j]["AF"] = 0;
-            }
-          }
-        }
     }
 
-    if (BS !== "Sachbezug") {
+    outerif: if (BS !== "Sachbezug") {
       if (BS !== "Internet") {
         if (BS !== "CleverLunch") {
           if (BS !== "Fehlgeld") {
@@ -133,15 +124,13 @@ function processBS(BS) {
                     if (BS !== "Verpflegungsmehraufwand") {
                       if (BS === "Fahrkosten") {
                         if (data[i]["S"] === "ja") {
-                          BS_result = 1;
-                          console.log("BS_result", BS_result);
+                          BS_result = 0; // TODO 0
                         } else {
                           let Fahrt = data[i]["V"];
                           if (Fahrt > 20) {
                             BS_result =
                               20 * (data[i]["Y"] * 3) * 0.3 +
                               (Fahrt - 20) * (data[i]["Y"] * 3) * 0.38;
-                            console.log("BS_result", BS_result);
                           } else {
                             BS_result = Fahrt * (data[i]["Y"] * 3) * 0.3;
                           }
@@ -150,12 +139,12 @@ function processBS(BS) {
                         if (BS_result > gesamt) {
                           BS_result = gesamt;
                           gesamt = 0;
-                          console.log("BS_result", BS_result); // Corrected from setting BS_result to 0
+                          // Corrected from setting BS_result to 0
                         } else {
                           gesamt -= BS_result;
                         }
 
-                        return;
+                        break outerif;
                       } else {
                         // Verpflegungsmehraufwand
                         if (data[i]["W"] !== "ja") {
@@ -169,7 +158,7 @@ function processBS(BS) {
                           gesamt -= BS_result;
                         }
 
-                        return;
+                        break outerif;
                       }
                     } else {
                       // Kindergarten
@@ -180,7 +169,7 @@ function processBS(BS) {
                         gesamt -= BS_result;
                       }
 
-                      return;
+                      break outerif;
                     }
                   } else {
                     // Garage
@@ -190,13 +179,13 @@ function processBS(BS) {
                       if (BS_result > gesamt) {
                         BS_result = gesamt;
                         gesamt = 0;
-                        console.log("BS_result", BS_result);
+                        //console.log("BS_result", BS_result);
                       } else {
                         gesamt -= BS_result;
                       }
                     }
 
-                    return;
+                    break outerif;
                   }
                 } else {
                   // Werbung
@@ -211,7 +200,7 @@ function processBS(BS) {
                     }
                   }
 
-                  return;
+                  break outerif;
                 }
               } else {
                 // Handy
@@ -226,7 +215,7 @@ function processBS(BS) {
                   BS_result = 0;
                 }
 
-                return;
+                break outerif;
               }
             } else {
               // Fehlgeld
@@ -241,7 +230,7 @@ function processBS(BS) {
                 BS_result = 0;
               }
 
-              return;
+              break outerif;
             }
           } else {
             // CleverLunch
@@ -255,7 +244,7 @@ function processBS(BS) {
               gesamt -= BS_result;
             }
 
-            return;
+            break outerif;
           }
         } else {
           // Internet
@@ -266,7 +255,7 @@ function processBS(BS) {
             gesamt -= BS_result;
           }
 
-          return;
+          break outerif;
         }
       } else {
         // Sachbezug
@@ -277,7 +266,7 @@ function processBS(BS) {
           gesamt -= BS_result;
         }
 
-        return;
+        break outerif;
       }
     } else {
       if (BS_result > gesamt) {
@@ -288,13 +277,17 @@ function processBS(BS) {
       }
       // console.log("BS_Result", BS_result);
 
-      return;
+      break outerif; // TOTO all return
     }
+    data[i][spalte] = BS_result; // TODO spalte
+    data[i]["AF"] = gesamt; // TODO column name
+    console.log("BS_Result", BS_result);
+    console.log("gesamt", gesamt);
   }
 }
 
 for (let bsi = 0; bsi < BSlist.length && bsi < 10; bsi++) {
-  processBS(BSlist[bsi], bsi);
+  processBS(BSlist[bsi]);
 }
 
 for (let i = 0; i < data.length; i++) {
