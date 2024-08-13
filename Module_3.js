@@ -18,7 +18,7 @@ function faktoren(data) {
     let zelle;
     let Gewünschter_Nettolohn = 1979.74;
     let EingabeDateType = 2;
-    //let Steuerpflichtiger_Arbeitslohn = 3718.27;
+    //let Steuerpflichtiger_Arbeitslohn = 3490.88;
     let data_columns = [
         "CT",
         "CU",
@@ -81,6 +81,7 @@ function faktoren(data) {
         console.log("nettoB", Netto_B);
 
         let I2 = bruttoPlus;
+        //let I2 = 654.75;
         //let B2 = 3200;
         //let A2 = 5;
         let C2 = Netto_A;
@@ -91,7 +92,7 @@ function faktoren(data) {
         let H2 = G1 > 0 ? (G2 * 100) / G1 : 1;
         result = 1 + H2 / 100;
 
-        //console.log(brutto);
+        console.log(brutto);
         console.log("result:", Number(result.toFixed(2)));
         console.log(data);
     }
@@ -1043,10 +1044,11 @@ function faktoren(data) {
                 Math.round(
                     Arbeitslosenversicherung * berechnungResult.G6 * 100
                 ) / 10000;
-            //console.log(berechnungResult.C9);
+            //console.log("Arbeitslosenversicherung", Arbeitslosenversicherung);
         }
 
         console.log(
+            "Abzuge",
             Lohnsteuer,
             Solidaritätszuschlag,
             Kirchensteuer,
@@ -1055,6 +1057,7 @@ function faktoren(data) {
             Pflegeversicherung,
             Arbeitslosenversicherung
         );
+        console.log("brutto val", brutto);
         return (
             brutto -
             (Lohnsteuer +
@@ -1067,7 +1070,7 @@ function faktoren(data) {
         );
     }
 
-    return data
+    return data;
 }
 module.exports = faktoren;
 //faktoren();

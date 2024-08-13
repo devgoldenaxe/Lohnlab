@@ -27,11 +27,9 @@ function menuTasks() {
             U: 0,
             BI: 0,
             CC: 0,
-
             AD: 0,
             AC: " ",
             Y: 33,
-            R: " ",
             AE: "brutto",
             Q: 1.05,
             CC: 0,
@@ -41,6 +39,7 @@ function menuTasks() {
             BK: 0,
         },
     ];
+
     let BSlist = [
         "Sachbezug",
         "Handy",
@@ -107,16 +106,16 @@ function menuTasks() {
             }
         }
 
-        let textBox1Value = 0;
-        let textBox6Value = 0;
-        let textBox7Value = 0;
-        let textBox8Value = 0;
+        let textBox1Value = 20;
+        let textBox6Value = 22;
+        let textBox7Value = 8.9;
+        let textBox8Value = 1.28;
 
-        Daten[0].J3 = textBox1Value;
+        Daten.J3 = textBox1Value;
         textBox1Value = parseFloat(textBox1Value) / 100;
-        Daten[0].J1 = textBox6Value;
-        Daten[0].J2 = textBox7Value;
-        Daten[0].J5 = textBox8Value;
+        Daten.J1 = textBox6Value;
+        Daten.J2 = textBox7Value;
+        Daten.J5 = textBox8Value;
 
         textBox5Value = parseFloat(Daten2.D1);
 

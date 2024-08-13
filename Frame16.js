@@ -6,7 +6,7 @@ function frame16() {
             "brutto Gehalt": 3500,
             Steuerklasse: 1,
             Uberstunden: 0,
-            R: 1,
+            R: 0,
             AL: 0,
             Z: 0,
             T: 0,
@@ -27,11 +27,9 @@ function frame16() {
             U: 0,
             BI: 0,
             CC: 0,
-
             AD: 0,
             AC: " ",
             Y: 33,
-            R: " ",
             AE: "brutto",
             Q: 1.05,
             CC: 0,
@@ -39,8 +37,10 @@ function frame16() {
             AS: 0,
             AU: 0,
             BK: 0,
+            
         },
     ];
+
     let BSlist = [
         "Sachbezug",
         "Handy",
@@ -109,18 +109,17 @@ function frame16() {
             // process_leeren();
             // }
         }
-        let textBox1Value = 0;
-        let textBox2Value = 0;
-        let textBox6Value = 0;
-        let textBox7Value = 0;
-        let textBox8Value = 0;
+        let textBox1Value = 20;
+        let textBox6Value = 22;
+        let textBox7Value = 8.9;
+        let textBox8Value = 1.28;
 
-        Daten[0].J3 = textBox1Value;
+        Daten.J3 = textBox1Value;
         textBox1Value = parseFloat(textBox1Value) / 100;
-        Daten[0].J1 = textBox6Value;
-        Daten[0].J2 = textBox7Value;
-        Daten[0].J5 = textBox8Value;
-
+        Daten.J1 = textBox6Value;
+        Daten.J2 = textBox7Value;
+        Daten.J5 = textBox8Value;
+        console.log("textbox1value : ", textBox6Value);
         // Daten2.D1 = parseFloat(textBox5Value);
 
         // const listeANBausteineRange = {
@@ -193,6 +192,7 @@ function frame16() {
                     ((data[i]["CC"] - data[i]["AG"]) * 18.6) / 100;
             }
         }
+        console.log("Rvalue : ", data["R"]);
 
         // Update UI elements with calculated values (uncomment and define as needed)
         // label52.caption = `${(1234.56).toFixed(2)} €`;
