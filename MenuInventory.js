@@ -1,25 +1,27 @@
 let data = [
   {
-    "AN PersNr": "1",
+    "AN PersNr": "2",
     "AN Nachname": "Nicole",
-    "brutto Gehalt": 3500,
+    O: 3500, // TODO update other data
     Steuerklasse: 1,
     Uberstunden: 0,
-    AB: "nein",
-    AC: " ",
+    Q: 0,
+    Y: 3,
+    AB: "ja", // TODO check
+    AC: "", // TODO check
     AD: 0,
     AE: "brutto",
     AF: 0,
     AG: 0,
-    AL: -50,
+    AL: 0,
     AM: 0,
-    AN: 9,
+    AN: 0,
     AO: 0,
     AP: 0,
     AQ: 0,
-    AR: 40,
+    AR: 0,
     AS: 0,
-    AT: 9.19,
+    AT: 0,
     AU: 0,
     AX: 0,
     BC: 0,
@@ -30,7 +32,7 @@ let data = [
     BJ: 0,
     BK: 0,
     BL: 0,
-    BM: 50,
+    BM: 0,
     BN: 0,
     BO: 0,
     BP: 0,
@@ -41,89 +43,33 @@ let data = [
     BU: 0,
     BV: 0,
     BW: 0,
-    CC: 110.25,
-    CD: 22,
+    CC: 0,
+    CD: 0,
     CE: 0,
-    Q: 1.06,
-    R: 1,
+    R: 0,
     S: "ja",
-    T: 0,
+    T: 9,
     U: 0,
     V: 0,
     W: "ja",
     X: 0,
-    Y: 33,
-    Z: 0,
-  },
-  {
-    "AN PersNr": "2",
-    "AN Nachname": "Nicole",
-    "brutto Gehalt": 3000,
-    Steuerklasse: 3,
-    Uberstunden: 0,
-    AB: "nein",
-    AC: " ",
-    AD: 0,
-    AE: "brutto",
-    AF: 0,
-    AG: 0,
-    AL: -50,
-    AM: 0,
-    AN: 0,
-    AO: 0,
-    AP: 0,
-    AQ: 0,
-    AR: 0,
-    AS: 0,
-    AT: 0,
-    AU: 0,
-    AX: 59.01,
-    BC: 0,
-    BD: 0,
-    BG: 0,
-    BH: 0,
-    BI: 0,
-    BJ: 0,
-    BK: 0,
-    BL: 0,
-    BM: 50,
-    BN: 0,
-    BO: 0,
-    BP: 0,
-    BQ: 0,
-    BR: 0,
-    BS: 0,
-    BT: 0,
-    BU: 0,
-    BV: 0,
-    BW: 0,
-    CC: 94.5,
-    CD: 22,
-    CE: 8.9,
-    Q: 1.25,
-    R: 1,
-    S: "ja",
-    T: 0,
-    U: 0,
-    V: 0,
-    W: "ja",
-    X: 0,
-    Y: 33,
     Z: 0,
   },
   {
     "AN PersNr": "3",
-    "AN Nachname": "Nicole",
-    "brutto Gehalt": 2500,
-    Steuerklasse: 1,
+    "AN Nachname": "Max",
+    O: 3000, // TODO update other data
+    Steuerklasse: 3,
     Uberstunden: 0,
-    AB: "nein",
-    AC: " ",
+    Q: 0,
+    Y: 3,
+    AB: "", // TODO check
+    AC: "", // TODO check
     AD: 0,
     AE: "brutto",
     AF: 0,
     AG: 0,
-    AL: -50,
+    AL: 0,
     AM: 0,
     AN: 0,
     AO: 0,
@@ -133,7 +79,7 @@ let data = [
     AS: 0,
     AT: 0,
     AU: 0,
-    AX: 44.0,
+    AX: 0,
     BC: 0,
     BD: 0,
     BG: 0,
@@ -142,7 +88,7 @@ let data = [
     BJ: 0,
     BK: 0,
     BL: 0,
-    BM: 50,
+    BM: 0,
     BN: 0,
     BO: 0,
     BP: 0,
@@ -153,33 +99,33 @@ let data = [
     BU: 0,
     BV: 0,
     BW: 0,
-    CC: 78.75,
-    CD: 22,
-    CE: 8.9,
-    Q: 1.12,
-    R: 1,
-    S: "ja",
+    CC: 0,
+    CD: 0,
+    CE: 0,
+    R: 0,
+    S: "",
     T: 0,
     U: 0,
-    V: 0,
-    W: "ja",
-    X: 0,
-    Y: 33,
+    V: 3,
+    W: "",
+    X: 200,
     Z: 0,
   },
   {
     "AN PersNr": "4",
-    "AN Nachname": "Nicole",
-    "brutto Gehalt": 3200,
-    Steuerklasse: 5,
+    "AN Nachname": "Franz",
+    O: 2500, // TODO update other data
+    Steuerklasse: 1,
     Uberstunden: 0,
-    AB: "nein",
-    AC: " ",
+    Q: 0,
+    Y: 5,
+    AB: "", // TODO check
+    AC: "", // TODO check
     AD: 0,
     AE: "brutto",
     AF: 0,
     AG: 0,
-    AL: -50,
+    AL: 0,
     AM: 0,
     AN: 0,
     AO: 0,
@@ -189,7 +135,7 @@ let data = [
     AS: 0,
     AT: 0,
     AU: 0,
-    AX: 44.47,
+    AX: 0,
     BC: 0,
     BD: 0,
     BG: 0,
@@ -198,7 +144,7 @@ let data = [
     BJ: 0,
     BK: 0,
     BL: 0,
-    BM: 50,
+    BM: 0,
     BN: 0,
     BO: 0,
     BP: 0,
@@ -209,21 +155,77 @@ let data = [
     BU: 0,
     BV: 0,
     BW: 0,
-    CC: 100.8,
-    CD: 22,
-    CE: 8.9,
-    Q: 0.88,
-    R: 1,
+    CC: 0,
+    CD: 0,
+    CE: 0,
+    R: 0,
     S: "ja",
     T: 0,
     U: 0,
     V: 0,
-    W: "ja",
+    W: "",
     X: 0,
-    Y: 33,
+    Z: 0,
+  },
+  {
+    "AN PersNr": "5",
+    "AN Nachname": "Eva",
+    O: 3200, // TODO update other data
+    Steuerklasse: 5,
+    Uberstunden: 0,
+    Q: 0,
+    Y: 5,
+    AB: "", // TODO check
+    AC: "ja", // TODO check
+    AD: 0,
+    AE: "brutto",
+    AF: 0,
+    AG: 0,
+    AL: 0,
+    AM: 0,
+    AN: 0,
+    AO: 0,
+    AP: 0,
+    AQ: 0,
+    AR: 0,
+    AS: 0,
+    AT: 0,
+    AU: 0,
+    AX: 0,
+    BC: 0,
+    BD: 0,
+    BG: 0,
+    BH: 0,
+    BI: 0,
+    BJ: 0,
+    BK: 0,
+    BL: 0,
+    BM: 0,
+    BN: 0,
+    BO: 0,
+    BP: 0,
+    BQ: 0,
+    BR: 0,
+    BS: 0,
+    BT: 0,
+    BU: 0,
+    BV: 0,
+    BW: 0,
+    CC: 0,
+    CD: 0,
+    CE: 0,
+    R: 0,
+    S: "",
+    T: 0,
+    U: 0,
+    V: 0,
+    W: "",
+    X: 0,
     Z: 0,
   },
 ];
+
+// console.log(data[0]["R"]);
 
 let BSlist = [
   "Sachbezug",
@@ -240,16 +242,16 @@ let BSlist = [
 
 let textBox3Value = 3;
 let textBox4Value = 0;
-let textBox5Value = 5;
-let textBox6Value = 100;
-let textBox7Value = 22;
-let textBox8Value = 8.9;
-let textBox1Value = 1.28;
+let textBox5Value = 100;
+let textBox6Value = 22;
+let textBox7Value = 8.9;
+let textBox8Value = 1.28;
+let textBox1Value = 5; //
 let ComboBox1 = "brutto";
 
-function process_Faktoren(data) {
+function process_Faktoren(data, Daten) {
   let faktoren = require("./Module_3.js");
-  return faktoren(data);
+  return faktoren(data, Daten);
 }
 
 function process_setzen(data, BSlist) {
@@ -279,7 +281,16 @@ function main(
       return;
     }
 
-    let Daten = { J3: "20%", J1: 22, J2: 8.9, J5: 1.28 };
+    let Daten = {
+      J3: "5%",
+      J1: 22,
+      J2: 8.9,
+      J5: 1.28,
+      P1: 0.025,
+      Q4: 0.05,
+      Q8: 0.15,
+      Q3: 0.25,
+    };
 
     // if (
     //   data[0]["AL"] > 0 ||
@@ -314,6 +325,8 @@ function main(
 
     // let i = 0;
     let E2 = comboBox1Value;
+    let E3 = "";
+    let E4 = 0;
     let O4 = `${textBox1Value} %`;
     let O3 = "Aufschlag:";
 
@@ -330,7 +343,7 @@ function main(
         // Call a function to set factors
         // TODO call module3
 
-        data = process_Faktoren(data);
+        data = process_Faktoren(data, Daten);
       }
 
       for (let i = 0; i < data.length; i++) {
@@ -366,14 +379,6 @@ function main(
           data[i]["Z"] = parseFloat(textBox5Value);
         }
 
-        if (textBox3Value) {
-          textBox3Value = 0;
-        }
-
-        if (textBox4Value) {
-          textBox4Value = 0;
-        }
-
         let faktor;
         if (textBox3Value !== 0) {
           if (textBox1Value === 0) {
@@ -381,51 +386,62 @@ function main(
           } else {
             faktor = 1 + parseFloat(textBox1Value) / 100;
           }
+
+          console.log("R 1 : ", data[i]["R"]);
+          if (E2 === "netto") {
+            data[i]["R"] =
+              data[i]["O"] * ((parseFloat(textBox3Value) / 100) * faktor);
+            E3 = "Erhöhung in %";
+            E4 = textBox3Value;
+          }
+
+          console.log(
+            "R 1-1 : ",
+            data[i]["O"],
+            textBox3Value,
+            data[i]["Q"],
+            faktor
+          );
+          if (E2 === "brutto") {
+            data[i]["R"] =
+              data[i]["O"] *
+              (parseFloat(textBox3Value) / 100 / 2) *
+              data[i]["Q"] *
+              faktor;
+            E3 = "Erhöhung in %";
+            E4 = textBox3Value;
+            data[i]["CC"] =
+              data[i]["O"] * (parseFloat(textBox3Value) / 100) * faktor;
+          }
         }
 
-        if (data[i]["E2"] === "netto") {
-          data[i]["R"] =
-            data[i]["O"] * ((parseFloat(textBox3Value) / 100) * faktor);
-          data[i]["E3"] = "Erhöhung in %";
-          data[i]["E4"] = textBox3Value;
-        }
-
-        if (data[i]["E2"] === "brutto") {
-          data[i]["R"] =
-            data[i]["O"] *
-            (parseFloat(textBox3Value) / 100 / 2) *
-            data[i]["Q"] *
-            faktor;
-          data[i]["E3"] = "Erhöhung in %";
-          data[i]["E4"] = textBox3Value;
-          data[i]["CC"] =
-            data[i]["O"] * (parseFloat(textBox3Value) / 100) * faktor;
-        }
-
+        console.log("R 2 : ", data[i]["R"]);
         if (textBox4Value !== 0) {
           if (textBox1Value === 0) {
             faktor = 1;
           } else {
             faktor = 1 + parseFloat(textBox1Value) / 100;
           }
-        }
 
-        if (data[i]["E2"] === "netto") {
-          data[i]["R"] = parseFloat(textBox4Value) * faktor;
-          data[i]["E3"] = "Erhöhung in %";
-          data[i]["E4"] = textBox4Value;
-        }
+          console.log("R 3 : ", data[i]["R"]);
+          if (E2 === "netto") {
+            data[i]["R"] = parseFloat(textBox4Value) * faktor;
+            E3 = "Erhöhung in %";
+            E4 = textBox4Value;
+          }
 
-        if (data[i]["E2"] === "brutto") {
-          data[i]["R"] =
-            (parseFloat(textBox4Value) / 100 / 2) * data[i]["Q"] * faktor;
-          data[i]["E3"] = "Erhöhung in %";
-          data[i]["E4"] = textBox4Value;
-          data[i]["CC"] = parseFloat(textBox4Value) * faktor;
+          console.log("R 4 : ", data[i]["R"]);
+          if (E2 === "brutto") {
+            data[i]["R"] =
+              (parseFloat(textBox4Value) / 100 / 2) * data[i]["Q"] * faktor;
+            E3 = "Erhöhung in %";
+            E4 = textBox4Value;
+            data[i]["CC"] = parseFloat(textBox4Value) * faktor;
+          }
         }
       }
       if (ii === 1) {
-        data = process_Faktoren(data);
+        data = process_Faktoren(data, Daten);
       }
     }
 
@@ -436,25 +452,14 @@ function main(
         data[i]["CC"] = (data[i]["R"] / data[i]["Q"]) * 2;
       }
       if (data[i]["CC"] > 0) {
-        data[i]["AD"] = (data[i]["CC"] - data[i]["AG"] * 18.6) / 100;
+        data[i]["AD"] = ((data[i]["CC"] - data[i]["AG"]) * 18.6) / 100;
       }
+      console.log("--- AD : ", data[i]["AD"]);
     }
-
     // Output the final state of the data array
-    console.log(data);
+    // console.log(data);
 
     function process_G3(data) {
-      let Daten = {
-        J3: "5%",
-        J1: 22,
-        J2: 8.9,
-        J5: 1.28,
-        P1: 0.025,
-        Q4: 0.05,
-        Q8: 0.15,
-        Q3: 0.25,
-      };
-
       //let Daten3 = { J3: "5%", J1: 22, J2: 8.9, J5: 1.28 };
 
       for (let i = 0; i < data.length; i++) {
@@ -518,14 +523,41 @@ function main(
         BK,
         BM,
         AX,
-        CD,
-        CE,
         AF,
         CI,
         BI,
         BC,
+        BO,
+        BG,
+        BQ,
+        BS,
+        BU,
         Daten
       ) {
+        BX =
+          AL +
+          AN +
+          AP +
+          AR +
+          AT +
+          AX +
+          BO +
+          BC +
+          BG +
+          BQ +
+          BS +
+          BI +
+          BK +
+          BM +
+          BU; //BZ / 12
+        let CD = 0;
+        if (BX > 0) {
+          CD = Daten.J1;
+        }
+        let CE = 0;
+        if (AX > 0) {
+          CE = Daten.J2;
+        }
         return (
           AL +
           AN +
@@ -561,14 +593,35 @@ function main(
           row.BK,
           row.BM,
           row.AX,
-          row.CD,
-          row.CE,
           row.AF,
           row.CI,
           row.BI,
           row.BC,
+          row.BO,
+          row.BG,
+          row.BQ,
+          row.BS,
+          row.BU,
           Daten
         );
+        console.log("++ AL", row.AL);
+        console.log("++ AN", row.AN);
+        console.log("++ AP", row.AP);
+        console.log("++ AR", row.AR);
+        console.log("++ AT", row.AT);
+        console.log("++ BK", row.BK);
+        console.log("++ BM", row.BM);
+        console.log("++ AX", row.AX);
+        console.log("++ CD", row.CD);
+        console.log("++ CE", row.CE);
+        console.log("++ AF", row.AF);
+        console.log("++ CI", row.CI);
+        console.log("++ BI", row.BI);
+        console.log("++ BC", row.BC);
+        console.log("++ Daten", Daten);
+
+        console.log("-- CG : ", sum);
+        console.log("-- CG : ", sum);
         results.push(sum);
       }
 

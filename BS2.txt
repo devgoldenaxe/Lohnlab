@@ -1,0 +1,204 @@
+For i = intFirstRow To intLastRow
+' If Sheets("Liste AN Bausteine").Cells(intFirstRow, 7).Value = 0 Or Sheets("Liste AN Bausteine").Cells(intFirstRow, 7).Value = "" Then
+' GoTo springen
+' End If
+gesamt = Sheets("Liste AN Bausteine").Cells(intFirstRow, 32).value
+Select Case BS2
+Case "Sachbezug"
+BS22 = 50 - Sheets("Liste AN Bausteine").Cells(intFirstRow, 38).value - Sheets("Liste AN Bausteine").Cells(intFirstRow, 26).value
+spalte = 38
+Case "Handy"
+BS22 = Sheets("Liste AN Bausteine").Cells(intFirstRow, 20).value - Sheets("Liste AN Bausteine").Cells(intFirstRow, 40).value
+spalte = 40
+Case "Internet"
+BS22 = 50 - Sheets("Liste AN Bausteine").Cells(intFirstRow, 65).value
+spalte = 65
+Case "CleverLunch"
+BS22 = (Sheets("Liste AN Bausteine").Cells(intFirstRow, 25).value * Sheets("Daten").Range("T1").value * Sheets("Daten").Range("T2").value) - Sheets("Liste AN Bausteine").Cells(intFirstRow, 50).value
+spalte = 50
+Case "Werbung"
+BS22 = 21 - Sheets("Liste AN Bausteine").Cells(intFirstRow, 42).value
+spalte = 42
+Case "Garage"
+BS22 = 40 - Sheets("Liste AN Bausteine").Cells(intFirstRow, 44).value
+spalte = 44
+Case "Fehlgeld"
+BS22 = 16 - Sheets("Liste AN Bausteine").Cells(intFirstRow, 46).value
+spalte = 46
+Case "Fahrkosten"
+spalte = 63
+Case "Kindergarten"     'neu
+spalte = 61             'neu
+BS22 = Sheets("Liste AN Bausteine").Cells(intFirstRow, 24).value - Sheets("Liste AN Bausteine").Cells(intFirstRow, 61).value   'neu
+Case "Verpflegungsmehraufwand"     'neu
+spalte = 55             'neu
+BS22 = (Sheets("Liste AN Bausteine").Cells(intFirstRow, 25).value * Sheets("Daten").Range("T3").value * Sheets("Daten").Range("T4").value) - Sheets("Liste AN Bausteine").Cells(intFirstRow, 55).value
+
+Case Else
+GoTo ausblenden
+End Select
+
+
+If BS2 <> "Sachbezug" Then
+            If BS2 <> "Internet" Then
+                        If BS2 <> "CleverLunch" Then
+                                If BS2 <> "Fehlgeld" Then
+                                        If BS2 <> "Handy" Then
+                                                If BS2 <> "Werbung" Then
+                                                        If BS2 <> "Garage" Then
+                                                             If BS2 <> "Kindergarten" Then
+                                                                If BS2 <> "Verpflegungsmehraufwand" Then
+                                                       'BS2 = Fahrkosten
+                                                            If Sheets("Liste AN Bausteine").Cells(intFirstRow, 19).value = "ja" Then
+                                                            BS22 = 0
+                                                            Else
+                                                                Fahrt = Sheets("Liste AN Bausteine").Cells(intFirstRow, 22).value
+                                                                If Fahrt > 20 Then
+                                                                BS22 = (20 * (Sheets("Liste AN Bausteine").Cells(intFirstRow, 25).value * 3) * 0.3) + ((Fahrt - 20) * (Sheets("Liste AN Bausteine").Cells(intFirstRow, 25).value * 3) * 0.38)
+                                                                Else
+                                                                BS22 = Fahrt * (Sheets("Liste AN Bausteine").Cells(intFirstRow, 25).value * 3) * 0.3
+                                                                End If
+                                                            End If
+                                                                If BS22 > gesamt Then
+                                                                BS22 = gesamt
+                                                                gesamt = 0
+                                                                Else
+                                                                gesamt = gesamt - BS22
+                                                                End If
+                                                        
+                                                        GoTo Ende2
+                                                                Else 'Verpflegungsmehraufwand
+                                                                    
+                                                                    If Sheets("Liste AN Bausteine").Cells(intFirstRow, 23).value <> "ja" Then BS22 = 0
+                                                                    If BS22 > gesamt Then
+                                                                    BS22 = gesamt
+                                                                    gesamt = 0
+                                                                    Else
+                                                                    gesamt = gesamt - BS22
+                                                                    End If
+                                                                GoTo Ende2
+                                                                End If
+
+                                                                Else 'Kiga
+                                                                    If BS22 > gesamt Then
+                                                                    BS22 = gesamt
+                                                                    gesamt = 0
+                                                                    Else
+                                                                    gesamt = gesamt - BS22
+                                                                    End If
+                                                                GoTo Ende2
+                                                                End If
+                                                        
+                                                        Else
+                                            
+                                                    'BS2 = Garage
+                                                                If Sheets("Liste AN Bausteine").Cells(intFirstRow, 19).value <> "ja" Then
+                                                                BS22 = 0
+                                                                Else
+                                                                            If BS22 > gesamt Then
+                                                                            BS22 = gesamt
+                                                                            gesamt = 0
+                                                                            Else
+                                                                            gesamt = gesamt - BS22
+                                                                            End If
+                                                                End If
+                                                        GoTo Ende2
+        
+                                                        End If
+                                                    
+                                                    
+                                                Else
+                                    
+                                            'BS2 = Werbung
+                                                If Sheets("Liste AN Bausteine").Cells(intFirstRow, 19).value = "ja" Then
+                                                BS22 = 0
+                                                Else
+                                                        If BS22 > gesamt Then
+                                                        BS22 = gesamt
+                                                        gesamt = 0
+                                                        Else
+                                                        gesamt = gesamt - BS22
+                                                        End If
+                        
+                                                End If
+                                                GoTo Ende2
+                                                
+                                            End If
+                            Else
+                        
+                            'BS2=Handy
+                                If Sheets("Liste AN Bausteine").Cells(intFirstRow, 20).value <> "ja" Then
+                                    If BS22 > gesamt Then
+                                    BS22 = gesamt
+                                    gesamt = 0
+                                    Else
+                                    gesamt = gesamt - BS22
+                                    End If
+                                Else
+                                BS22 = 0
+                                End If
+                                GoTo Ende2
+                                
+                            End If
+                    
+                    
+ Else 'Fehlgeld
+            If Sheets("Liste AN Bausteine").Cells(intFirstRow, 28).value = "ja" Then
+                    If BS22 > gesamt Then
+                    BS22 = gesamt
+                    gesamt = 0
+                    Else
+                    gesamt = gesamt - BS22
+                    End If
+            Else
+                    BS22 = 0
+                    End If
+                    GoTo Ende2
+            End If
+ 
+ Else ' CleverLunch
+  If Sheets("Liste AN Bausteine").Cells(intFirstRow, 23).value = "ja" Then BS22 = 0
+
+             If BS22 > gesamt Then
+            BS22 = gesamt
+            gesamt = 0
+            Else
+            gesamt = gesamt - BS22
+            End If
+            GoTo Ende2
+
+End If
+ Else ' Internt
+            If BS22 > gesamt Then
+            BS22 = gesamt
+            gesamt = 0
+            Else
+            gesamt = gesamt - BS22
+            End If
+            GoTo Ende2
+
+End If
+
+
+          
+
+End If
+'Sachbezug
+        If BS22 > gesamt Then
+           BS22 = gesamt
+            gesamt = 0
+           Else
+         gesamt = gesamt - BS22
+          End If
+         GoTo Ende2
+
+
+
+Ende2:
+        
+        Sheets("Liste AN Bausteine").Cells(intFirstRow, spalte).value = BS22
+        Sheets("Liste AN Bausteine").Cells(intFirstRow, 32).value = gesamt
+
+
+intFirstRow = intFirstRow + 1
+Next i

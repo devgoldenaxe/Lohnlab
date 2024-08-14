@@ -363,4 +363,4 @@ console.log("total", totalSum);
 console.log(Y.toFixed(2));
 let G2 = (Y * 4) / data.length;
 let G3 = G2 * 12;
-console.log("------- G3:  ", G3);
+console.log("------- G3:  ", G3.toFixed(2));

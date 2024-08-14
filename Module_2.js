@@ -19,6 +19,9 @@ function setzen(data, BSlist) {
 
     for (let i = 0; i < data.length; i++) {
       let gesamt = data[i]["R"]; // Initial amount
+      if (BS != BSlist[0]) {
+        gesamt = data[i]["AF"]; // Initial amount
+      }
       let BS_result = 0;
       let spalte;
 
@@ -26,7 +29,7 @@ function setzen(data, BSlist) {
       console.log("test-bs", BS);
       switch (BS) {
         case "Sachbezug":
-          BS_result = 50 - (data[i]["AL"] - data[i]["Z"]);
+          BS_result = 50 - data[i]["AL"] - data[i]["Z"];
           spalte = "AL";
           //console.log("BS_result", BS_result);
           break;
@@ -39,7 +42,15 @@ function setzen(data, BSlist) {
           spalte = "BM";
           break;
         case "CleverLunch":
-          BS_result = data[i]["Y"] * Daten.T1 * Daten.T1 - data[i]["AX"];
+          console.log(
+            "BS- 01: ",
+            data[i]["Y"],
+            Daten.T1,
+            Daten.T2,
+            data[i]["AX"]
+          );
+          BS_result = data[i]["Y"] * Daten.T1 * Daten.T2 - data[i]["AX"];
+          //console.log("AX----", BS_result);
           spalte = "AX";
           break;
         case "Werbung":
@@ -48,6 +59,7 @@ function setzen(data, BSlist) {
           break;
         case "Garage":
           BS_result = 40 - data[i]["AR"];
+          console.log("garage-----", BS_result);
           spalte = "AR";
           break;
         case "Fehlgeld":
@@ -76,46 +88,35 @@ function setzen(data, BSlist) {
                   if (BS !== "Garage") {
                     if (BS !== "Kindergarten") {
                       if (BS !== "Verpflegungsmehraufwand") {
-                        if (BS === "Fahrkosten") {
-                          if (data[i]["S"] === "ja") {
-                            BS_result = 0; // TODO 0
-                          } else {
-                            let Fahrt = data[i]["V"];
-                            if (Fahrt > 20) {
-                              BS_result =
-                                20 * (data[i]["Y"] * 3) * 0.3 +
-                                (Fahrt - 20) * (data[i]["Y"] * 3) * 0.38;
-                            } else {
-                              BS_result = Fahrt * (data[i]["Y"] * 3) * 0.3;
-                            }
-                          }
-
-                          if (BS_result > gesamt) {
-                            BS_result = gesamt;
-                            gesamt = 0;
-                            // Corrected from setting BS_result to 0
-                          } else {
-                            gesamt -= BS_result;
-                          }
-
-                          break outerif;
+                        // if (BS === "Fahrkosten") {
+                        if (data[i]["S"] === "ja") {
+                          BS_result = 0; // TODO 0
                         } else {
-                          // Verpflegungsmehraufwand
-                          if (data[i]["W"] !== "ja") {
-                            BS_result = 0;
-                          }
-
-                          if (BS_result > gesamt) {
-                            BS_result = gesamt;
-                            gesamt = 0;
+                          let Fahrt = data[i]["V"];
+                          if (Fahrt > 20) {
+                            BS_result =
+                              20 * (data[i]["Y"] * 3) * 0.3 +
+                              (Fahrt - 20) * (data[i]["Y"] * 3) * 0.38;
                           } else {
-                            gesamt -= BS_result;
+                            BS_result = Fahrt * (data[i]["Y"] * 3) * 0.3;
                           }
-
-                          break outerif;
                         }
+
+                        if (BS_result > gesamt) {
+                          BS_result = gesamt;
+                          gesamt = 0;
+                          // Corrected from setting BS_result to 0
+                        } else {
+                          gesamt -= BS_result;
+                        }
+
+                        break outerif;
                       } else {
-                        // Kindergarten
+                        // Verpflegungsmehraufwand
+                        if (data[i]["W"] !== "ja") {
+                          BS_result = 0;
+                        }
+
                         if (BS_result > gesamt) {
                           BS_result = gesamt;
                           gesamt = 0;
@@ -126,29 +127,26 @@ function setzen(data, BSlist) {
                         break outerif;
                       }
                     } else {
-                      // Garage
-                      if (data[i]["S"] !== "ja") {
-                        BS_result = 0;
+                      // Kindergarten
+                      if (BS_result > gesamt) {
+                        BS_result = gesamt;
+                        gesamt = 0;
                       } else {
-                        if (BS_result > gesamt) {
-                          BS_result = gesamt;
-                          gesamt = 0;
-                          //console.log("BS_result", BS_result);
-                        } else {
-                          gesamt -= BS_result;
-                        }
+                        gesamt -= BS_result;
                       }
 
                       break outerif;
                     }
                   } else {
-                    // Werbung
-                    if (data[i]["S"] === "ja") {
+                    // Garage
+                    console.log("gg0  BS- 1: ", BS_result, gesamt);
+                    if (data[i]["S"] !== "ja") {
                       BS_result = 0;
                     } else {
                       if (BS_result > gesamt) {
                         BS_result = gesamt;
                         gesamt = 0;
+                        console.log("BS_result-----", BS_result);
                       } else {
                         gesamt -= BS_result;
                       }
@@ -157,23 +155,24 @@ function setzen(data, BSlist) {
                     break outerif;
                   }
                 } else {
-                  // Handy
-                  if (data[i]["Y"] !== "ja") {
+                  // Werbung
+                  console.log("gg  BS- 1: ", BS_result, gesamt);
+                  if (data[i]["S"] === "ja") {
+                    BS_result = 0;
+                  } else {
                     if (BS_result > gesamt) {
                       BS_result = gesamt;
                       gesamt = 0;
                     } else {
                       gesamt -= BS_result;
                     }
-                  } else {
-                    BS_result = 0;
                   }
 
                   break outerif;
                 }
               } else {
-                // Fehlgeld
-                if (data[i]["AB"] === "ja") {
+                // Handy
+                if (data[i]["Y"] !== "ja") {
                   if (BS_result > gesamt) {
                     BS_result = gesamt;
                     gesamt = 0;
@@ -187,21 +186,25 @@ function setzen(data, BSlist) {
                 break outerif;
               }
             } else {
-              // CleverLunch
-              if (data[i]["W"] === "ja") {
-                BS_result = 0;
-              }
-              if (BS_result > gesamt) {
-                BS_result = gesamt;
-                gesamt = 0;
+              // Fehlgeld
+              if (data[i]["AB"] === "ja") {
+                if (BS_result > gesamt) {
+                  BS_result = gesamt;
+                  gesamt = 0;
+                } else {
+                  gesamt -= BS_result;
+                }
               } else {
-                gesamt -= BS_result;
+                BS_result = 0;
               }
 
               break outerif;
             }
           } else {
-            // Internet
+            // CleverLunch
+            if (data[i]["W"] === "ja") {
+              BS_result = 0;
+            }
             if (BS_result > gesamt) {
               BS_result = gesamt;
               gesamt = 0;
@@ -212,7 +215,9 @@ function setzen(data, BSlist) {
             break outerif;
           }
         } else {
-          // Sachbezug
+          // Internet
+
+          //console.log("Internet BS- 01: ", data[i]["BM"]);
           if (BS_result > gesamt) {
             BS_result = gesamt;
             gesamt = 0;
@@ -223,16 +228,30 @@ function setzen(data, BSlist) {
           break outerif;
         }
       } else {
+        // Sachbezug
+        console.log("Sachbezug BS- 1: ", BS_result, gesamt);
         if (BS_result > gesamt) {
           BS_result = gesamt;
           gesamt = 0;
         } else {
           gesamt -= BS_result;
         }
-        // console.log("BS_Result", BS_result);
 
-        break outerif; // TOTO all return
+        break outerif;
       }
+
+      //  else {
+      //   console.log("Sachbezug BS- 1: ", BS_result, gesamt);
+      //   if (BS_result > gesamt) {
+      //     BS_result = gesamt;
+      //     gesamt = 0;
+      //   } else {
+      //     gesamt -= BS_result;
+      //   }
+      //   // console.log("BS_Result", BS_result);
+
+      //   break outerif; // TOTO all return
+      // }
       data[i][spalte] = BS_result; // TODO spalte
       data[i]["AF"] = gesamt; // TODO column name
       console.log("BS_Result-2", BS_result);
@@ -328,6 +347,7 @@ function setzen(data, BSlist) {
 
   for (let i = 0; i < data.length; i++) {
     if (data[i]["AX"] > 0) {
+      //TODO Sum of all Ax values
       data[i]["AW"] = Math.round(data[i]["AX"] * 100) / 100;
       let CL = data[i]["AX"];
 
@@ -378,6 +398,8 @@ function setzen(data, BSlist) {
         data[i]["AV"] = CL / data[i]["AW"];
       }
     }
+    console.log("--- AW : ", data[i]["AW"]);
+    console.log("--- AV : ", data[i]["AV"]);
 
     if (data[i]["BC"] > 0) {
       data[i]["BC"] = Math.round(data[i]["BC"] * 100) / 100;
@@ -436,41 +458,51 @@ function setzen(data, BSlist) {
     }
 
     if (data[i]["CC"] > 0) {
+      console.log(
+        "--- AD check : ",
+        data[i]["CC"],
+        data[i]["AG"],
+        data[i]["AD"]
+      );
+
       data[i]["AD"] = ((data[i]["CC"] - data[i]["AG"]) * data[i]["AD"]) / 100;
     }
+
+    console.log("--- AG : ", data[i]["AG"]);
+    console.log("--- AD : ", data[i]["AD"]);
     // console.log("CL", CL);
 
-    console.log(data);
-    console.log(A2);
-    console.log(A3);
-    console.log(A4);
-    console.log(A5);
-    console.log(A6);
-    console.log(A7);
-    console.log(A8);
-    console.log(A9);
-    console.log(A10);
-    console.log(A11);
-    console.log(A12);
-    console.log(A13);
-    console.log(A14);
-    console.log(A15);
-    console.log(A16);
-    console.log(F2);
-    console.log(F3);
-    console.log(F4);
-    console.log(F5);
-    console.log(F6);
-    console.log(F7);
-    console.log(F8);
-    console.log(F9);
-    console.log(F10);
-    console.log(F11);
-    console.log(F12);
-    console.log(F13);
-    console.log(F14);
-    console.log(F15);
-    console.log(F16);
+    // console.log(data);
+    // console.log(A2);
+    // console.log(A3);
+    // console.log(A4);
+    // console.log(A5);
+    // console.log(A6);
+    // console.log(A7);
+    // console.log(A8);
+    // console.log(A9);
+    // console.log(A10);
+    // console.log(A11);
+    // console.log(A12);
+    // console.log(A13);
+    // console.log(A14);
+    // console.log(A15);
+    // console.log(A16);
+    // console.log(F2);
+    // console.log(F3);
+    // console.log(F4);
+    // console.log(F5);
+    // console.log(F6);
+    // console.log(F7);
+    // console.log(F8);
+    // console.log(F9);
+    // console.log(F10);
+    // console.log(F11);
+    // console.log(F12);
+    // console.log(F13);
+    // console.log(F14);
+    // console.log(F15);
+    // console.log(F16);
   }
   return data;
 }
