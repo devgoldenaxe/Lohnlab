@@ -415,7 +415,22 @@ function main(
           }
         }
 
-        console.log("R 2 : ", data[i]["R"]);
+        console.log("---R 2: ", data[i]["R"]);
+        let totalR = 0; // Initialize a variable to accumulate the sum of R values
+
+        for (let i = 0; i < data.length; i++) {
+          let R = data[i]["R"]; // Assuming "R" is the correct key for your data
+
+          console.log("---R 2:", R);
+
+          totalR += R; // Add the current value of R to totalR
+        }
+
+        let averageR = totalR / data.length; // Calculate the average
+
+        //console.log("Total R value:", totalR);
+        console.log("T8:", Math.round(averageR * 100) / 100);
+
         if (textBox4Value !== 0) {
           if (textBox1Value === 0) {
             faktor = 1;
