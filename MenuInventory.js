@@ -225,7 +225,7 @@ let data = [
   },
 ];
 
-// console.log(data[0]["R"]);
+//console.log(data[0]["R"]);
 
 let BSlist = [
   "Sachbezug",
