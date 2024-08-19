@@ -225,7 +225,7 @@ let data = [
   },
 ];
 
-// console.log(data[0]["R"]);
+//console.log(data[0]["R"]);
 
 let BSlist = [
   "Sachbezug",
@@ -415,7 +415,22 @@ function main(
           }
         }
 
-        console.log("R 2 : ", data[i]["R"]);
+        console.log("---R 2: ", data[i]["R"]);
+        // let totalR = 0; // Initialize a variable to accumulate the sum of R values
+
+        // for (let i = 0; i < data.length; i++) {
+        //   let R = data[i]["R"]; // Assuming "R" is the correct key for your data
+
+        //   //console.log("---R 2:", R);
+
+        //   totalR += R; // Add the current value of R to totalR
+        // }
+
+        // let averageR = totalR / data.length; // Calculate the average
+
+        // //console.log("Total R value:", totalR);
+        // console.log("T8:", Math.round(averageR * 100) / 100);
+
         if (textBox4Value !== 0) {
           if (textBox1Value === 0) {
             faktor = 1;
@@ -634,10 +649,22 @@ function main(
       console.log("total", totalSum);
       let Y = sumCF - totalSum;
 
-      console.log(Y.toFixed(2));
+      console.log("Y :", Math.round(Y * 100) / 100);
       let G2 = (Y * 4) / data.length;
       let G3 = G2 * 12;
       console.log("------- G3:  ", G3);
+
+      let totalR = 0;
+      for (let i = 0; i < data.length; i++) {
+        let R = data[i]["R"];
+
+        totalR += R;
+      }
+
+      let averageR = totalR / data.length;
+
+      //console.log("Total R value:", totalR);
+      console.log("T8:", Math.round(averageR * 100) / 100);
     }
 
     process_G3(data);
