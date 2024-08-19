@@ -1,14 +1,14 @@
 let data = [
     {
-        "AN PersNr": "5",
-        "AN Nachname": "Eva",
-        O: 3200,
-        Steuerklasse: 5,
+        "AN PersNr": "2",
+        "AN Nachname": "Nicole",
+        O: 3500, // TODO update other data
+        Steuerklasse: 1,
         Uberstunden: 0,
         Q: 0,
-        Y: 5,
-        AB: "",
-        AC: "ja",
+        Y: 3,
+        AB: "ja", // TODO check
+        AC: "", // TODO check
         AD: 0,
         AE: "brutto",
         AF: 0,
@@ -23,7 +23,6 @@ let data = [
         AS: 0,
         AT: 0,
         AU: 0,
-        AV: 0,
         AX: 0,
         BC: 0,
         BD: 0,
@@ -43,7 +42,174 @@ let data = [
         BT: 0,
         BU: 0,
         BV: 0,
-        BX: 0,
+        BW: 0,
+        CC: 0,
+        CD: 0,
+        CE: 0,
+        R: 0,
+        S: "ja",
+        T: 9,
+        U: 0,
+        V: 0,
+        W: "ja",
+        X: 0,
+        Z: 0,
+    },
+    {
+        "AN PersNr": "3",
+        "AN Nachname": "Max",
+        O: 3000, // TODO update other data
+        Steuerklasse: 3,
+        Uberstunden: 0,
+        Q: 0,
+        Y: 3,
+        AB: "", // TODO check
+        AC: "", // TODO check
+        AD: 0,
+        AE: "brutto",
+        AF: 0,
+        AG: 0,
+        AL: 0,
+        AM: 0,
+        AN: 0,
+        AO: 0,
+        AP: 0,
+        AQ: 0,
+        AR: 0,
+        AS: 0,
+        AT: 0,
+        AU: 0,
+        AX: 0,
+        BC: 0,
+        BD: 0,
+        BG: 0,
+        BH: 0,
+        BI: 0,
+        BJ: 0,
+        BK: 0,
+        BL: 0,
+        BM: 0,
+        BN: 0,
+        BO: 0,
+        BP: 0,
+        BQ: 0,
+        BR: 0,
+        BS: 0,
+        BT: 0,
+        BU: 0,
+        BV: 0,
+        BW: 0,
+        CC: 0,
+        CD: 0,
+        CE: 0,
+        R: 0,
+        S: "",
+        T: 0,
+        U: 0,
+        V: 3,
+        W: "",
+        X: 200,
+        Z: 0,
+    },
+    {
+        "AN PersNr": "4",
+        "AN Nachname": "Franz",
+        O: 2500, // TODO update other data
+        Steuerklasse: 1,
+        Uberstunden: 0,
+        Q: 0,
+        Y: 5,
+        AB: "", // TODO check
+        AC: "", // TODO check
+        AD: 0,
+        AE: "brutto",
+        AF: 0,
+        AG: 0,
+        AL: 0,
+        AM: 0,
+        AN: 0,
+        AO: 0,
+        AP: 0,
+        AQ: 0,
+        AR: 0,
+        AS: 0,
+        AT: 0,
+        AU: 0,
+        AX: 0,
+        BC: 0,
+        BD: 0,
+        BG: 0,
+        BH: 0,
+        BI: 0,
+        BJ: 0,
+        BK: 0,
+        BL: 0,
+        BM: 0,
+        BN: 0,
+        BO: 0,
+        BP: 0,
+        BQ: 0,
+        BR: 0,
+        BS: 0,
+        BT: 0,
+        BU: 0,
+        BV: 0,
+        BW: 0,
+        CC: 0,
+        CD: 0,
+        CE: 0,
+        R: 0,
+        S: "ja",
+        T: 0,
+        U: 0,
+        V: 0,
+        W: "",
+        X: 0,
+        Z: 0,
+    },
+    {
+        "AN PersNr": "5",
+        "AN Nachname": "Eva",
+        O: 3200, // TODO update other data
+        Steuerklasse: 5,
+        Uberstunden: 0,
+        Q: 0,
+        Y: 5,
+        AB: "", // TODO check
+        AC: "ja", // TODO check
+        AD: 0,
+        AE: "brutto",
+        AF: 0,
+        AG: 0,
+        AL: 0,
+        AM: 0,
+        AN: 0,
+        AO: 0,
+        AP: 0,
+        AQ: 0,
+        AR: 0,
+        AS: 0,
+        AT: 0,
+        AU: 0,
+        AX: 0,
+        BC: 0,
+        BD: 0,
+        BG: 0,
+        BH: 0,
+        BI: 0,
+        BJ: 0,
+        BK: 0,
+        BL: 0,
+        BM: 0,
+        BN: 0,
+        BO: 0,
+        BP: 0,
+        BQ: 0,
+        BR: 0,
+        BS: 0,
+        BT: 0,
+        BU: 0,
+        BV: 0,
         BW: 0,
         CC: 0,
         CD: 0,
@@ -228,7 +394,7 @@ function frame16(
             data[i]["R"] = data[i]["BX"];
             data[i]["AF"] = "";
             data[i]["AG"] = "";
-            // console.log("AGvalu1", data[i]["AG"]);
+            console.log("AGvalu1", data[i]["AG"]);
             data[i]["CC"] = (data[i]["R"] / data[i]["Q"]) * 2;
 
             if (data[i]["CC"] > 0) {
@@ -421,14 +587,25 @@ function frame16(
             console.log("total", totalSum);
             let Y = sumCF - totalSum;
 
-            console.log(Y.toFixed(2));
+            console.log("Y :", Math.round(Y * 100) / 100);
             let G2 = (Y * 4) / data.length;
             let G3 = G2 * 12;
             console.log("------- G3:  ", G3);
+
+            let totalR = 0;
+            for (let i = 0; i < data.length; i++) {
+                let R = data[i]["R"];
+
+                totalR += R;
+            }
+
+            let averageR = totalR / data.length;
+
+            //console.log("Total R value:", totalR);
+            console.log("T8:", Math.round(averageR * 100) / 100);
         }
 
         process_G3(data);
-
     } catch (error) {
         console.error(
             "Upps, da ist leider ein Fehler aufgetreten, bitte wenden Sie sich an office@lohnkonzepte.de und melden Sie den Fehler: BS_indi_3",

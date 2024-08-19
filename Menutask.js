@@ -254,7 +254,7 @@ let BSlist = [
 //         D1: 0,
 //     },
 // ];
-
+let textBox5Value = 100;
 let textBox6Value = 22;
 let textBox7Value = 8.9;
 let textBox8Value = 1.28;
@@ -403,8 +403,200 @@ setzen();*/
         //     image17.visible = false;
         // }, 3000);
 
+        function process_G3(data) {
+            //let Daten3 = { J3: "5%", J1: 22, J2: 8.9, J5: 1.28 };
 
-        
+            for (let i = 0; i < data.length; i++) {
+                data[i]["CF"] = data[i]["CC"] * Daten.J5;
+            }
+
+            let sumCF = data.reduce(
+                (accumulator, currentValue) => accumulator + currentValue["CF"],
+                0
+            );
+
+            // Display the sum of all CF values
+            //console.log(sumCF.toFixed(2));
+
+            // Function to calculate the sum based on conditions
+            function sumIf(conditionColumn, sumColumn, row) {
+                if (row[conditionColumn] === "ja") {
+                    return row[sumColumn];
+                }
+                return 0;
+            }
+
+            // Calculate total sum using the condition "ja"
+            for (let i = 0; i < data.length; i++) {
+                let totalSum1 =
+                    sumIf("AM", "AL", data[i]) +
+                    sumIf("AO", "AN", data[i]) +
+                    sumIf("AQ", "AP", data[i]) +
+                    sumIf("AS", "AR", data[i]) +
+                    sumIf("AU", "AT", data[i]) +
+                    sumIf("BJ", "BI", data[i]) +
+                    sumIf("BL", "BK", data[i]) +
+                    sumIf("BN", "BM", data[i]) +
+                    sumIf("BH", "BG", data[i]) +
+                    sumIf("BD", "BC", data[i]) +
+                    sumIf("BP", "BO", data[i]) +
+                    sumIf("BR", "BQ", data[i]) +
+                    sumIf("BT", "BS", data[i]) +
+                    sumIf("BV", "BU", data[i]);
+
+                data[i]["BW"] = totalSum1;
+
+                if (totalSum1 === 0) {
+                    data[i]["CI"] = 0;
+                }
+                let result = totalSum1 * Daten.P1;
+                if (result > 2.79) {
+                    data[i]["CI"] = 2.79;
+                } else {
+                    data[i]["CI"] = result;
+                }
+            }
+
+            // Function to calculate the sum of a row
+            function calculateRowSum(
+                AL,
+                AN,
+                AP,
+                AR,
+                AT,
+                BK,
+                BM,
+                AX,
+                AF,
+                CI,
+                BI,
+                BC,
+                BO,
+                BG,
+                BQ,
+                BS,
+                BU,
+                Daten
+            ) {
+                BX =
+                    AL +
+                    AN +
+                    AP +
+                    AR +
+                    AT +
+                    AX +
+                    BO +
+                    BC +
+                    BG +
+                    BQ +
+                    BS +
+                    BI +
+                    BK +
+                    BM +
+                    BU; //BZ / 12
+                let CD = 0;
+                if (BX > 0) {
+                    CD = Daten.J1;
+                }
+                let CE = 0;
+                if (AX > 0) {
+                    CE = Daten.J2;
+                }
+                return (
+                    AL +
+                    AN +
+                    AP +
+                    AR +
+                    AT +
+                    BK +
+                    BM +
+                    AX +
+                    AX * Daten.Q4 +
+                    BK * Daten.Q8 +
+                    BM * Daten.Q3 +
+                    CD +
+                    CE +
+                    AF * 2.4 +
+                    CI +
+                    BI +
+                    BC
+                );
+            }
+
+            // Calculate the sum for each row and store in the results array
+            let results = [];
+
+            for (let i = 0; i < data.length; i++) {
+                let row = data[i];
+                let sum = calculateRowSum(
+                    row.AL,
+                    row.AN,
+                    row.AP,
+                    row.AR,
+                    row.AT,
+                    row.BK,
+                    row.BM,
+                    row.AX,
+                    row.AF,
+                    row.CI,
+                    row.BI,
+                    row.BC,
+                    row.BO,
+                    row.BG,
+                    row.BQ,
+                    row.BS,
+                    row.BU,
+                    Daten
+                );
+                console.log("++ AL", row.AL);
+                console.log("++ AN", row.AN);
+                console.log("++ AP", row.AP);
+                console.log("++ AR", row.AR);
+                console.log("++ AT", row.AT);
+                console.log("++ BK", row.BK);
+                console.log("++ BM", row.BM);
+                console.log("++ AX", row.AX);
+                console.log("++ CD", row.CD);
+                console.log("++ CE", row.CE);
+                console.log("++ AF", row.AF);
+                console.log("++ CI", row.CI);
+                console.log("++ BI", row.BI);
+                console.log("++ BC", row.BC);
+                console.log("++ Daten", Daten);
+
+                console.log("-- CG : ", sum);
+                console.log("-- CG : ", sum);
+                results.push(sum);
+            }
+
+            // Calculate the total sum of all rows
+            let totalSum = results.reduce((sum, value) => sum + value, 0);
+
+            // Output the total sum in the required format
+            //console.log(totalSum.toFixed(2));
+            console.log("sum", sumCF);
+            console.log("total", totalSum);
+            let Y = sumCF - totalSum;
+
+            console.log("Y :", Math.round(Y * 100) / 100);
+            let G2 = (Y * 4) / data.length;
+            let G3 = G2 * 12;
+            console.log("------- G3:  ", G3);
+
+            let totalR = 0;
+            for (let i = 0; i < data.length; i++) {
+                let R = data[i]["R"];
+
+                totalR += R;
+            }
+
+            let averageR = totalR / data.length;
+
+            //console.log("Total R value:", totalR);
+            console.log("T8:", Math.round(averageR * 100) / 100);
+        }
+
+        process_G3(data);
     } catch (error) {
         console.error(
             "Upps, da ist leider ein Fehler aufgetreten, bitte wenden Sie sich an office@lohnkonzepte.de und melden Sie den Fehler: BS_indi_3",
