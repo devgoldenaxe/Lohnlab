@@ -3,7 +3,7 @@ let data = [
     C: "5",
     D: "Eva",
     O: 3500,
-    P: 1,
+    Steuerklasse: 1,
     Uberstunden: 0,
     Q: 0,
     Y: 3,
@@ -62,7 +62,7 @@ let data = [
     CX: 14.6,
     F: "Butjadinger Str. 79",
     G: 26180,
-    I: 1 / 27 / 1967,
+    I: "1 / 27 / 1967",
     R: 0,
     S: "ja",
     T: 9,
@@ -73,127 +73,108 @@ let data = [
     Z: 0,
   },
 ];
+
+function process_Faktoren(data) {
+  let faktoren = require("./Module_3.js");
+  return faktoren(data);
+}
+
+let inputa = "";
+let inputb = "ja";
+
 function drucken(data) {
   try {
-    // let AN5 = 0;
-    // for (let i = 0; i < data.length; i++) {
-    //   if (data[i].AN) {
-    //     AN5 += data[i].AN;
-    //   }
-    // }
-    // let AR5 = 0;
-    // for (let i = 0; i < data.length; i++) {
-    //   if (data[i] && data[i].AR) {
-    //     AR5 += data[i].AR;
-    //   }
-    // }
-    // let AT5 = 0;
-    // for (let i = 0; i < data.length; i++) {
-    //   if (data[i] && data[i].AT) {
-    //     AT5 += data[i].AT;
-    //   }
-    // }
-    // let BI5 = 0;
-    // for (let i = 0; i < data.length; i++) {
-    //   if (data[i] && data[i].BI) {
-    //     BI5 += data[i].BI;
-    //   }
-    // }
-    // let BK5 = 0;
-    // for (let i = 0; i < data.length; i++) {
-    //   if (data[i] && data[i].BK) {
-    //     BK5 += data[i].BK;
-    //   }
-    // }
-    // let BM5 = 0;
-    // for (let i = 0; i < data.length; i++) {
-    //   if (data[i] && data[i].BM) {
-    //     BM5 += data[i].BM;
-    //   }
-    // }
-    // if (AN5 > 0) {
-    //   let eingabe = prompt(
-    //     "Baustein Handy auf Karte laden?\n\n\nals Eingabe ist nur zulässig: ja / nein",
-    //     "nein"
-    //   );
-    //   if (eingabe == "ja") {
-    //     for (let i = 0; i < data.length; i++) {
-    //       data[i].AO = "ja";
-    //     }
-    //   }
-    // }
-    // // Garage
-    // if (AR5 > 0) {
-    //   let eingabe = prompt(
-    //     "Baustein garage auf Karte laden?\n\n\nals Eingabe ist nur zulässig: ja / nein",
-    //     "nein"
-    //   );
-    //   if (eingabe == "ja") {
-    //     for (let i = 0; i < data.length; i++) {
-    //       data[i].AS = "ja";
-    //     }
-    //   }
-    // }
-    // // Fehlgeld
-    // if (AT5 > 0) {
-    //   let eingabe = prompt(
-    //     "Baustein Fehlgeld auf Karte laden?\n\n\nals Eingabe ist nur zulässig: ja / nein",
-    //     "nein"
-    //   );
-    //   if (eingabe == "ja") {
-    //     for (let i = 0; i < data.length; i++) {
-    //       data[i].AU = "ja";
-    //     }
-    //   }
-    // }
-    // // Verpflegung
-    // if (AT5 > 0) {
-    //   let eingabe = prompt(
-    //     "Baustein Verpflegung auf Karte laden?\n\n\nals Eingabe ist nur zulässig: ja / nein",
-    //     "nein"
-    //   );
-    //   if (eingabe == "ja") {
-    //     for (let i = 0; i < data.length; i++) {
-    //       data[i].BD = "ja";
-    //     }
-    //   }
-    // }
-    // // KiGa
-    // if (BI5 > 0) {
-    //   let eingabe = prompt(
-    //     "Baustein KiGa auf Karte laden?\n\n\nals Eingabe ist nur zulässig: ja / nein",
-    //     "nein"
-    //   );
-    //   if (eingabe == "ja") {
-    //     for (let i = 0; i < data.length; i++) {
-    //       data[i].BJ = "ja";
-    //     }
-    //   }
-    // }
-    // // Fahrtkosten
-    // if (BK5 > 0) {
-    //   let eingabe = prompt(
-    //     "Baustein Fahrtkosten auf Karte laden?\n\n\nals Eingabe ist nur zulässig: ja / nein",
-    //     "nein"
-    //   );
-    //   if (eingabe == "ja") {
-    //     for (let i = 0; i < data.length; i++) {
-    //       data[i].BL = "ja";
-    //     }
-    //   }
-    // }
-    // // Internet
-    // if (BM5 > 0) {
-    //   let eingabe = prompt(
-    //     "Baustein Internet auf Karte laden?\n\n\nals Eingabe ist nur zulässig: ja / nein",
-    //     "nein"
-    //   );
-    //   if (eingabe == "ja") {
-    //     for (let i = 0; i < data.length; i++) {
-    //       data[i].BN = "ja";
-    //     }
-    //   }
-    // }
+    let AN5 = 0;
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].AN) {
+        AN5 += data[i].AN;
+      }
+    }
+    let AR5 = 0;
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].AR) {
+        AR5 += data[i].AR;
+      }
+    }
+    let AT5 = 0;
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].AT) {
+        AT5 += data[i].AT;
+      }
+    }
+    let BI5 = 0;
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].BI) {
+        BI5 += data[i].BI;
+      }
+    }
+    let BK5 = 0;
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].BK) {
+        BK5 += data[i].BK;
+      }
+    }
+    let BM5 = 0;
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].BM) {
+        BM5 += data[i].BM;
+      }
+    }
+    if (AN5 > 0) {
+      if (inputa == "ja") {
+        for (let i = 0; i < data.length; i++) {
+          data[i].AO = "ja";
+        }
+      }
+    }
+    // Garage
+    if (AR5 > 0) {
+      if (inputa == "ja") {
+        for (let i = 0; i < data.length; i++) {
+          data[i].AS = "ja";
+        }
+      }
+    }
+    // Fehlgeld
+    if (AT5 > 0) {
+      if (inputa == "ja") {
+        for (let i = 0; i < data.length; i++) {
+          data[i].AU = "ja";
+        }
+      }
+    }
+    // Verpflegung
+    if (AT5 > 0) {
+      if (inputa == "ja") {
+        for (let i = 0; i < data.length; i++) {
+          data[i].BD = "ja";
+        }
+      }
+    }
+    // KiGa
+    if (BI5 > 0) {
+      if (inputa == "ja") {
+        for (let i = 0; i < data.length; i++) {
+          data[i].BJ = "ja";
+        }
+      }
+    }
+    // Fahrtkosten
+    if (BK5 > 0) {
+      if (inputa == "ja") {
+        for (let i = 0; i < data.length; i++) {
+          data[i].BL = "ja";
+        }
+      }
+    }
+    // Internet
+    if (BM5 > 0) {
+      if (inputb == "ja") {
+        for (let i = 0; i < data.length; i++) {
+          data[i].BN = "ja";
+        }
+      }
+    }
     for (let i = 0; i < data.length; i++) {
       let Gehalt = {
         B4: 0,
@@ -314,23 +295,23 @@ function drucken(data) {
         F33: 0,
         F34: 0,
         F35: 0,
-        G19: 0,
-        G20: 0,
-        G21: 0,
-        G22: 0,
-        G23: 0,
-        G24: 0,
-        G25: 0,
-        G26: 0,
-        G27: 0,
-        G28: 0,
-        G29: 0,
-        G30: 0,
-        G31: 0,
-        G32: 0,
-        G33: 0,
-        G34: 0,
-        G35: 0,
+        G19: 1,
+        G20: 1,
+        G21: 1,
+        G22: 1,
+        G23: 1,
+        G24: 1,
+        G25: 1,
+        G26: 1,
+        G27: 1,
+        G28: 1,
+        G29: 1,
+        G30: 1,
+        G31: 1,
+        G32: 0.083,
+        G33: 0.083,
+        G34: 0.083,
+        G35: 1,
         K43: 0,
         E43: 0,
         F43: 0,
@@ -359,6 +340,8 @@ function drucken(data) {
         M60: 0,
         M61: 0,
       };
+
+      // data = process_Faktoren(data);
       // TODO Data CT-DG values fillng using Eningabe sheet values From G6-G18
       let Eingabe = [0.0, 0, 0, 9, 14.6, 1.7, 0, 1, 0, 0, 0, 0.0, 0.0];
       if (!data[i].CT) {
@@ -400,16 +383,16 @@ function drucken(data) {
       if (!data[i].DG) {
         data[i].DG = Eingabe[12];
       }
-      Gehalt.B4 = data[i].C;
-      Gehalt.C4 = data[i].I;
-      Gehalt.D4 = data[i].P;
-      Gehalt.E4 = data[i].CT;
-      Gehalt.F4 = data[i].CV;
-      Gehalt.G4 = data[i].CW;
-      Gehalt.H4 = data[i].DF;
-      Gehalt.J4 = data[i].CU;
-      Gehalt.E6 = data[i].CX + " / " + data[i].CY;
-      if (data[i].DI == 1) {
+      Gehalt["B4"] = data[i]["C"];
+      Gehalt["C4"] = data[i]["I"];
+      Gehalt["D4"] = data[i]["Steuerklasse"];
+      Gehalt["E4"] = data[i]["CT"];
+      Gehalt["F4"] = data[i]["CV"];
+      Gehalt["G4"] = data[i]["CW"];
+      Gehalt["H4"] = data[i]["DF"];
+      Gehalt["J4"] = data[i]["CU"];
+      Gehalt["E6"] = data[i]["CX"] + " / " + data[i]["CY"];
+      if (data[i].DA == 1) {
         Gehalt.F6 = "ja";
       } else {
         Gehalt.F6 = "nein";
@@ -600,13 +583,13 @@ function drucken(data) {
       Gehalt["J47"] = data[i]["Gehalt_J47"];
       //data[i]["Gehalt_/ eingabe["B3"] = brutto2;
 
-      Gehalt["E44"] = data[i]["Gehalt_E44"];
-      Gehalt["F44"] = data[i]["Gehalt_F44"];
-      Gehalt["H44"] = data[i]["Gehalt_H44"];
-      Gehalt["G48"] = data[i]["Gehalt_G48"];
-      Gehalt["H48"] = data[i]["Gehalt_H48"];
-      Gehalt["I48"] = data[i]["Gehalt_I48"];
-      Gehalt["J48"] = data[i]["Gehalt_J48"];
+      Gehalt["E44"] = data[i]["Gehalt_E43"]; //Gehalt_E44
+      Gehalt["F44"] = data[i]["Gehalt_F43"]; //Gehalt_F44
+      Gehalt["H44"] = data[i]["Gehalt_H43"]; //Gehalt_H44
+      Gehalt["G48"] = data[i]["Gehalt_G47"]; //Gehalt_G48
+      Gehalt["H48"] = data[i]["Gehalt_H47"]; //Gehalt_H48
+      Gehalt["I48"] = data[i]["Gehalt_I47"]; //Gehalt_I48
+      Gehalt["J48"] = data[i]["Gehalt_J47"]; //Gehalt_J48
 
       // for (let i = 1; i <= steuer.length; i++) {
       //   steuer[i]["A"] = Gehalt["K17"];
@@ -648,14 +631,12 @@ function drucken(data) {
       //     K38: Gehalt.K38,
       //     K39: Gehalt.K39,
       // };
-      Gehalt["K41"] = {
-        total:
-          Gehalt["K17"] +
-          Gehalt["K36"] +
-          Gehalt["K37"] +
-          Gehalt["K38"] +
-          Gehalt["K39"],
-      };
+      Gehalt["K41"] =
+        Gehalt["K17"] +
+        Gehalt["K36"] +
+        Gehalt["K37"] +
+        Gehalt["K38"] +
+        Gehalt["K39"];
 
       // for (let i = 0; i < K.length; i++) {
       //     K41 += K[i];
@@ -664,8 +645,8 @@ function drucken(data) {
         total: Gehalt["M52"] + Gehalt["M53"] + Gehalt["M54"],
       };
 
-      Gehalt["M18"] = Gehalt["E18"] * Gehalt["F18"] * Gehalt[" G18"];
-      Gehalt["M19"] = Gehalt["E19"] * Gehalt["F19"] * Gehalt[" G19"];
+      Gehalt["M18"] = Gehalt["E18"] * Gehalt["F18"] * Gehalt["G18"];
+      Gehalt["M19"] = Gehalt["E19"] * Gehalt["F19"] * Gehalt["G19"];
       Gehalt["M20"] = Gehalt["E20"] * Gehalt["F20"] * Gehalt["G20"];
       Gehalt["M21"] = Gehalt["E21"] * Gehalt["F21"] * Gehalt["G21"];
       Gehalt["M22"] = Gehalt["E22"] * Gehalt["F22"] * Gehalt["G22"];
@@ -684,28 +665,29 @@ function drucken(data) {
       Gehalt["M35"] = Gehalt["E35"] * Gehalt["F35"] * Gehalt["G35"];
 
       Gehalt["M41"] =
-        Gehalt[" M18"] +
-        Gehalt[" M19"] +
-        Gehalt[" M20"] +
-        Gehalt[" M21"] +
-        Gehalt[" M22"] +
-        Gehalt[" M23"] +
-        Gehalt[" M24"] +
-        Gehalt[" M25"] +
-        Gehalt[" M26"] +
-        Gehalt[" M27"] +
-        Gehalt[" M28"] +
-        Gehalt[" M29"] +
-        Gehalt[" M30"] +
-        Gehalt[" M31"] +
-        Gehalt[" M32"] +
-        Gehalt[" M33"] +
-        Gehalt[" M34"] +
-        Gehalt[" M35"] +
-        Gehalt[" M36"] +
-        Gehalt[" M37"] +
-        Gehalt[" M38"] +
-        Gehalt[" M39"];
+        Gehalt["M17"] +
+        Gehalt["M18"] +
+        Gehalt["M19"] +
+        Gehalt["M20"] +
+        Gehalt["M21"] +
+        Gehalt["M22"] +
+        Gehalt["M23"] +
+        Gehalt["M24"] +
+        Gehalt["M25"] +
+        Gehalt["M26"] +
+        Gehalt["M27"] +
+        Gehalt["M28"] +
+        Gehalt["M29"] +
+        Gehalt["M30"] +
+        Gehalt["M31"] +
+        Gehalt["M32"] +
+        Gehalt["M33"] +
+        Gehalt["M34"] +
+        Gehalt["M35"] +
+        Gehalt["M36"] +
+        Gehalt["M37"] +
+        Gehalt["M38"] +
+        Gehalt["M39"];
 
       Gehalt["K43"] =
         Gehalt["E43"] +
@@ -734,7 +716,8 @@ function drucken(data) {
       Gehalt["M59"] = Gehalt["M52"] < 0 ? -Gehalt["M52"] : Gehalt["M52"];
       Gehalt["K61"] = Gehalt["K58"] + Gehalt["K59"] + Gehalt["K60"];
       Gehalt["M61"] = Gehalt["M58"] + Gehalt["M59"] + Gehalt["M60"];
-      console.log(Gehalt["M41"]);
+      //console.log(" Gehalt["M41"]" ,Gehalt["M41"]);
+      console.log(" Gehalt", Gehalt);
     }
 
     //   if(eingabe.visible = true){
@@ -747,4 +730,6 @@ function drucken(data) {
     );
   }
 }
-drucken(data);
+module.exports = drucken;
+
+// drucken(data);
