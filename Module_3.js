@@ -1057,26 +1057,23 @@ function faktoren(data, Daten) {
         }
 
         if (type == 1) {
-            Data[i]["Gehailt_E43"] = Lohnsteuer;
-            Data[i]["Gehailt_F43"] = Kirchensteuer;
-            Data[i]["Gehailt_H43"] = Solidaritätszuschlag;
-            Data[i]["Gehailt_G47"] = Krankenversicherungsbeitrag;
-
-            Data[i]["Gehailt_H47"] = Rentenversicherung;
-
-            Data[i]["Gehailt_I47"] = Arbeitslosenversicherung;
-
-            Data[i]["Gehailt_J47"] = Pflegeversicherung;
+            data[i]["Gehailt_E43"] = Lohnsteuer;
+            data[i]["Gehailt_F43"] = Kirchensteuer;
+            data[i]["Gehailt_H43"] = Solidaritätszuschlag;
+            data[i]["Gehailt_G47"] = Krankenversicherungsbeitrag;
+            data[i]["Gehailt_H47"] = Rentenversicherung;
+            data[i]["Gehailt_I47"] = Arbeitslosenversicherung;
+            data[i]["Gehailt_J47"] = Pflegeversicherung;
         }
 
         if (type == 2) {
-            Data[i]["Gehailt_E44"] = Lohnsteuer;
-            Data[i]["Gehailt_F44"] = Kirchensteuer;
-            Data[i]["Gehailt_H44"] = Solidaritätszuschlag;
-            Data[i]["Gehailt_G48"] = Krankenversicherungsbeitrag;
-            Data[i]["Gehailt_H48"] = Rentenversicherung;
-            Data[i]["Gehailt_I48"] = Arbeitslosenversicherung;
-            Data[i]["Gehailt_J48"] = Pflegeversicherung;
+            data[i]["Gehailt_E44"] = Lohnsteuer;
+            data[i]["Gehailt_F44"] = Kirchensteuer;
+            data[i]["Gehailt_H44"] = Solidaritätszuschlag;
+            data[i]["Gehailt_G48"] = Krankenversicherungsbeitrag;
+            data[i]["Gehailt_H48"] = Rentenversicherung;
+            data[i]["Gehailt_I48"] = Arbeitslosenversicherung;
+            data[i]["Gehailt_J48"] = Pflegeversicherung;
         }
 
         console.log(
