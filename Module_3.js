@@ -68,7 +68,7 @@ function faktoren(data, Daten) {
         // Eingabe["stkl"] = stkl;
         // Eingabe["brutto"] = brutto;
         //console.log(brutto);
-        Netto_A = nettoCalc(brutto, stkl, EingabeB, EingabeDateType, 1);
+        Netto_A = nettoCalc(brutto, stkl, EingabeB, EingabeDateType, 1, i);
         //Netto_A = EingabeB.reduce((sum, value) => sum + value, 0);
 
         // TODO Need to calculate CB
@@ -83,7 +83,7 @@ function faktoren(data, Daten) {
         //console.log(brutto);
         bruttoPlus = data[i]["CB"];
         console.log("bruttoplus", bruttoPlus);
-        Netto_B = nettoCalc(brutto, stkl, EingabeB, EingabeDateType, 2);
+        Netto_B = nettoCalc(brutto, stkl, EingabeB, EingabeDateType, 2, i);
 
         console.log("nettoA", Netto_A);
         console.log("nettoB", Netto_B);
@@ -864,7 +864,7 @@ function faktoren(data, Daten) {
     }
     // calculateAblauf();
 
-    function nettoCalc(brutto, stkl, EingabeB, EingabeDateType, type) {
+    function nettoCalc(brutto, stkl, EingabeB, EingabeDateType, type, i) {
         let AblaufResult = calculateAblauf(brutto, stkl, EingabeB);
         //console.log(AblaufResult);
         // AblaufResult = {
