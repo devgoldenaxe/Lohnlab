@@ -207,4 +207,12 @@ function frame16() {
     );
   }
 }
-frame16();
+frame16(
+  data,
+  BSlist,
+  textBox6Value,
+  textBox7Value,
+  textBox8Value,
+  textBox1Value,
+  ComboBox1
+);
