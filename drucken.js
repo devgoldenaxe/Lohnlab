@@ -121,7 +121,7 @@ function drucken(data) {
       }
     }
     if (AN5 > 0) {
-      if (inputa == "ja") {
+      if (inputb == "ja") {
         for (let i = 0; i < data.length; i++) {
           data[i].AO = "ja";
         }
@@ -129,7 +129,7 @@ function drucken(data) {
     }
     // Garage
     if (AR5 > 0) {
-      if (inputa == "ja") {
+      if (inputb == "ja") {
         for (let i = 0; i < data.length; i++) {
           data[i].AS = "ja";
         }
@@ -137,7 +137,7 @@ function drucken(data) {
     }
     // Fehlgeld
     if (AT5 > 0) {
-      if (inputa == "ja") {
+      if (inputb == "ja") {
         for (let i = 0; i < data.length; i++) {
           data[i].AU = "ja";
         }
@@ -641,9 +641,7 @@ function drucken(data) {
       // for (let i = 0; i < K.length; i++) {
       //     K41 += K[i];
       // }
-      Gehalt["M55"] = {
-        total: Gehalt["M52"] + Gehalt["M53"] + Gehalt["M54"],
-      };
+      //Gehalt["M55"] = Gehalt["M52"] + Gehalt["M53"] + Gehalt["M54"];
 
       Gehalt["M18"] = Gehalt["E18"] * Gehalt["F18"] * Gehalt["G18"];
       Gehalt["M19"] = Gehalt["E19"] * Gehalt["F19"] * Gehalt["G19"];
@@ -716,6 +714,7 @@ function drucken(data) {
       Gehalt["M59"] = Gehalt["M52"] < 0 ? -Gehalt["M52"] : Gehalt["M52"];
       Gehalt["K61"] = Gehalt["K58"] + Gehalt["K59"] + Gehalt["K60"];
       Gehalt["M61"] = Gehalt["M58"] + Gehalt["M59"] + Gehalt["M60"];
+      Gehalt["M68"] = Gehalt["M61"] - Gehalt["K61"];
       //console.log(" Gehalt["M41"]" ,Gehalt["M41"]);
       console.log(" Gehalt", Gehalt);
     }
