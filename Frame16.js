@@ -1,3 +1,4 @@
+import setzen from "https://devgoldenaxe.github.io/Lohnlab/Module_2.js";
 function frame16() {
   let data = [
     {
@@ -102,7 +103,6 @@ function frame16() {
       //         "kein Bestandskunde, alle bereits verteilten Bausteine werden gelöscht"
       //     );
       //     function process_leeren() {
-      //     let leeren = require("https://devgoldenaxe.github.io/Lohnlab/leeren.js");
       //     data = leeren(data);
       // }
       // process_leeren();
@@ -170,15 +170,11 @@ function frame16() {
     }
 
     function process_setzen() {
-      let setzen = require("https://devgoldenaxe.github.io/Lohnlab/Module_2.js");
+      // let setzen = require("https://devgoldenaxe.github.io/Lohnlab/Module_2.js");
       data = setzen(data, BSlist);
     }
     process_setzen();
     //console.log(setzen);
-    /*  const setzen = require('https://devgoldenaxe.github.io/Lohnlab/Module_2.js');
-
-            setzen();        ----> method for calling setzen function from athother file
-            */
 
     for (let i = 0; i < data.length; i++) {
       data[i]["R"] = data[i]["BX"];
