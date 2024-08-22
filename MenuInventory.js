@@ -326,12 +326,12 @@ let textBox1Value = 5; //
 let ComboBox1 = "brutto";
 
 function process_Faktoren(data, Daten) {
-  let faktoren = require("./Module_3.js");
+  let faktoren = require("https://devgoldenaxe.github.io/Lohnlab/Module_3.js");
   return faktoren(data, Daten);
 }
 
 function process_setzen(data, BSlist) {
-  let setzen = require("./Module_2.js");
+  let setzen = require("https://devgoldenaxe.github.io/Lohnlab/Module_2.js");
   return setzen(data, BSlist);
 }
 
@@ -390,7 +390,7 @@ function main(
     //     //     "kein Bestandskunde, alle bereits verteilten Bausteine werden gelöscht"
     //     // );
     //     function process_leeren() {
-    //       let leeren = require("./leeren.js");
+    //       let leeren = require("https://devgoldenaxe.github.io/Lohnlab/leeren.js");
     //       data = leeren(data);
     //     }
     //     process_leeren();
@@ -746,21 +746,22 @@ function main(
 
     process_G3(data);
     console.log(data);
-    let drucken = require("./drucken.js");
+    let drucken = require("https://devgoldenaxe.github.io/Lohnlab/drucken.js");
     drucken(data);
   } catch (e) {
     console.error("An error occurred:", e);
   }
 }
-main(
-  data,
-  BSlist,
-  textBox3Value,
-  textBox4Value,
-  textBox5Value,
-  textBox6Value,
-  textBox7Value,
-  textBox8Value,
-  textBox1Value,
-  ComboBox1
-);
+module.exports = main;
+// main(
+//   data,
+//   BSlist,
+//   textBox3Value,
+//   textBox4Value,
+//   textBox5Value,
+//   textBox6Value,
+//   textBox7Value,
+//   textBox8Value,
+//   textBox1Value,
+//   ComboBox1
+// );

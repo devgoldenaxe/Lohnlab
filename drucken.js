@@ -75,7 +75,7 @@ let data = [
 ];
 
 function process_Faktoren(data) {
-  let faktoren = require("./Module_3.js");
+  let faktoren = require("https://devgoldenaxe.github.io/Lohnlab/Module_3.js");
   return faktoren(data);
 }
 
