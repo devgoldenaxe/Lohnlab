@@ -23,6 +23,8 @@ let data = [
     AS: 0,
     AT: 0,
     AU: 0,
+    AW: 0,
+    AV: 0,
     AX: 0,
     BC: 0,
     BD: 0,
@@ -79,6 +81,8 @@ let data = [
     AS: 0,
     AT: 0,
     AU: 0,
+    AW: 0,
+    AV: 0,
     AX: 0,
     BC: 0,
     BD: 0,
@@ -135,6 +139,8 @@ let data = [
     AS: 0,
     AT: 0,
     AU: 0,
+    AW: 0,
+    AV: 0,
     AX: 0,
     BC: 0,
     BD: 0,
@@ -191,6 +197,8 @@ let data = [
     AS: 0,
     AT: 0,
     AU: 0,
+    AW: 0,
+    AV: 0,
     AW: 0,
     AV: 0,
     AX: 0,
@@ -346,7 +354,7 @@ function menuTasks(
     data = process_Faktoren(data, Daten);
 
     /*import { faktoren } from './Module_3.js';          ----> method for calling setzen function from athother file
-faktoren();*/
+    faktoren();*/
 
     for (let i = 0; i < data.length; i++) {
       if (data[i]["S"] == "ja" && data[i]["V"] !== "") {
@@ -384,7 +392,7 @@ faktoren();*/
 
     data = process_setzen(data, BSlist);
     /*import { setzen } from './Module_3.js';          ----> method for calling setzen function from athother file
-setzen();*/
+    setzen();*/
 
     for (let i = 0; i < data.length; i++) {
       data[i]["CC"] = (data[i]["R"] / data[i]["Q"]) * 2;

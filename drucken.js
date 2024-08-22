@@ -120,8 +120,9 @@ function drucken(data) {
         BM5 += data[i].BM;
       }
     }
+    //Handy
     if (AN5 > 0) {
-      if (inputb == "ja") {
+      if (inputa == "ja") {
         for (let i = 0; i < data.length; i++) {
           data[i].AO = "ja";
         }
@@ -129,7 +130,7 @@ function drucken(data) {
     }
     // Garage
     if (AR5 > 0) {
-      if (inputb == "ja") {
+      if (inputa == "ja") {
         for (let i = 0; i < data.length; i++) {
           data[i].AS = "ja";
         }
@@ -137,7 +138,7 @@ function drucken(data) {
     }
     // Fehlgeld
     if (AT5 > 0) {
-      if (inputb == "ja") {
+      if (inputa == "ja") {
         for (let i = 0; i < data.length; i++) {
           data[i].AU = "ja";
         }
@@ -169,7 +170,7 @@ function drucken(data) {
     }
     // Internet
     if (BM5 > 0) {
-      if (inputb == "ja") {
+      if (inputa == "ja") {
         for (let i = 0; i < data.length; i++) {
           data[i].BN = "ja";
         }
@@ -591,12 +592,17 @@ function drucken(data) {
       Gehalt["I48"] = data[i]["Gehalt_I47"]; //Gehalt_I48
       Gehalt["J48"] = data[i]["Gehalt_J47"]; //Gehalt_J48
 
-      // for (let i = 1; i <= steuer.length; i++) {
+      // Initialize steuer array with values from Gehalt
+      // for (let i = 0; i < steuer.length; i++) {
+      //   steuer[i] = {}; // Initialize each element as an object
       //   steuer[i]["A"] = Gehalt["K17"];
       //   steuer[i]["B"] = Gehalt["E43"];
       //   steuer[i]["C"] = Gehalt["M17"];
       //   steuer[i]["D"] = Gehalt["E44"];
       // }
+
+      // Assuming steuer is an array of objects with a given length
+      // Assuming steuer is an array of objects with a given length
 
       // for (let i = 18; i <= 39; i++){
 

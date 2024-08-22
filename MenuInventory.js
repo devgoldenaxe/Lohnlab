@@ -28,6 +28,8 @@ let data = [
     AS: 0,
     AT: 0,
     AU: 0,
+    AW: 0,
+    AV: 0,
     AX: 0,
     BC: 0,
     BD: 0,
@@ -101,6 +103,8 @@ let data = [
     AS: 0,
     AT: 0,
     AU: 0,
+    AW: 0,
+    AV: 0,
     AX: 0,
     BC: 0,
     BD: 0,
@@ -174,6 +178,8 @@ let data = [
     AS: 0,
     AT: 0,
     AU: 0,
+    AW: 0,
+    AV: 0,
     AX: 0,
     BC: 0,
     BD: 0,
@@ -247,6 +253,8 @@ let data = [
     AS: 0,
     AT: 0,
     AU: 0,
+    AW: 0,
+    AV: 0,
     AX: 0,
     BC: 0,
     BD: 0,
@@ -733,10 +741,11 @@ function main(
 
       //console.log("Total R value:", totalR);
       console.log("T8:", Math.round(averageR * 100) / 100);
+      console.log("BMvalue---1", data[0]["BM"]);
     }
 
     process_G3(data);
-    // console.log(data);
+    console.log(data);
     let drucken = require("./drucken.js");
     drucken(data);
   } catch (e) {
