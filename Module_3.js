@@ -1073,7 +1073,7 @@ function faktoren(data, Daten) {
 
   return data;
 }
-module.exports = faktoren;
+export default faktoren;
 //faktoren();
 
 // const data = [

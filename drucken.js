@@ -736,6 +736,6 @@ function drucken(data) {
     );
   }
 }
-module.exports = drucken;
+export default drucken;
 
 // drucken(data);

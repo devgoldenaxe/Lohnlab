@@ -754,7 +754,7 @@ function main(
     console.error("An error occurred:", e);
   }
 }
-module.exports = main;
+export default main;
 // main(
 //   data,
 //   BSlist,
