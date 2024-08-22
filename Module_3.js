@@ -81,7 +81,7 @@ function faktoren(data, Daten) {
       brutto = brutto + data[i]["CB"];
     }
     //console.log(brutto);
-    bruttoPlus = data[i]["CB"];
+    let bruttoPlus = data[i]["CB"];
     console.log("bruttoplus", bruttoPlus);
     Netto_B = nettoCalc(brutto, stkl, EingabeB, EingabeDateType, 2, i);
 
