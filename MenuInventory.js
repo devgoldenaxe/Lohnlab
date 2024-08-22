@@ -627,7 +627,7 @@ function main(
         BU,
         Daten
       ) {
-        BX =
+        let BX =
           AL +
           AN +
           AP +
