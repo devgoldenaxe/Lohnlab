@@ -84,6 +84,7 @@ let inputa = "";
 let inputb = "ja";
 
 function drucken(data) {
+  let result = [];
   try {
     let AN5 = 0;
     for (let i = 0; i < data.length; i++) {
@@ -729,6 +730,7 @@ function drucken(data) {
       Gehalt["M68"] = Gehalt["M61"] - Gehalt["K61"];
       //console.log(" Gehalt["M41"]" ,Gehalt["M41"]);
       console.log(" Gehalt", Gehalt);
+      result.push(Gehalt);
     }
 
     //   if(eingabe.visible = true){
@@ -740,6 +742,7 @@ function drucken(data) {
       err
     );
   }
+  return result;
 }
 export default drucken;
 

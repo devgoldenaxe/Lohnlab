@@ -353,6 +353,7 @@ function main(
   let resultg3 = {
     G3: 0,
     T8: 0,
+    Gehalt_array: [],
   };
   try {
     // progressBar1.value = 10;
@@ -748,16 +749,14 @@ function main(
       //console.log("Total R value:", totalR);
       console.log("T8:", Math.round(T8 * 100) / 100);
       console.log("BMvalue---1", data[0]["BM"]);
-      return {
-        G3: G3,
-        T8: T8,
-      };
+      resultg3.G3 = G3;
+      resultg3.T8 = T8;
     }
 
-    resultg3 = process_G3(data);
+    process_G3(data);
     console.log(data);
     // let drucken = require("https://devgoldenaxe.github.io/Lohnlab/drucken.js");
-    drucken(data);
+    resultg3.Gehalt_array = drucken(data);
   } catch (e) {
     console.error("An error occurred:", e);
   }
