@@ -203,6 +203,7 @@ function frame16() {
     );
   }
 }
+export default frame16;
 frame16(
   data,
   BSlist,

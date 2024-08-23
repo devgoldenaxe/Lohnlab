@@ -71,6 +71,7 @@ function setzen(data, BSlist) {
           break;
         case "Kindergarten":
           spalte = "BI";
+          BS_result = data[i]["X"] - data[i]["BI"];
           break;
         case "Verpflegungsmehraufwand":
           BS_result = data[i]["Y"] * Daten.T3 * Daten.T4 - data[i]["BC"];
@@ -507,7 +508,7 @@ function setzen(data, BSlist) {
   return data;
 }
 
-export default setzen;
+module.exports = setzen;
 
 // let data = [
 //     {
