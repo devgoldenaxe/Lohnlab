@@ -350,6 +350,10 @@ function main(
   textBox1Value,
   ComboBox1
 ) {
+  let resultg3 = {
+    G3: 0,
+    T8: 0,
+  };
   try {
     // progressBar1.value = 10;
     // progressBar1.visible = true;
@@ -744,19 +748,20 @@ function main(
       //console.log("Total R value:", totalR);
       console.log("T8:", Math.round(T8 * 100) / 100);
       console.log("BMvalue---1", data[0]["BM"]);
+      return {
+        G3: G3,
+        T8: T8,
+      };
     }
 
-    process_G3(data);
+    resultg3 = process_G3(data);
     console.log(data);
     // let drucken = require("https://devgoldenaxe.github.io/Lohnlab/drucken.js");
     drucken(data);
   } catch (e) {
     console.error("An error occurred:", e);
   }
-  return {
-    G3: G3,
-    T8: T8,
-  };
+  return resultg3;
 }
 
 export default main;
