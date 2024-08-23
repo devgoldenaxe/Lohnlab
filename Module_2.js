@@ -508,7 +508,7 @@ function setzen(data, BSlist) {
   return data;
 }
 
-module.exports = setzen;
+export default setzen;
 
 // let data = [
 //     {
