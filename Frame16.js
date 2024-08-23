@@ -599,7 +599,7 @@ function frame16(
         BU,
         Daten
       ) {
-        BX =
+        let BX =
           AL +
           AN +
           AP +
