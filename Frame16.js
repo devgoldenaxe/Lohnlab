@@ -350,9 +350,10 @@
 //     let faktoren = require("./Module_3.js");
 //     return faktoren(data, Daten);
 // }
+import setzen from "https://devgoldenaxe.github.io/Lohnlab/Module_2.js";
+//import drucken from "https://devgoldenaxe.github.io/Lohnlab/drucken.js";
 
 function process_setzen(data, BSlist) {
-  let setzen = require("./Module_2.js");
   return setzen(data, BSlist);
 }
 
