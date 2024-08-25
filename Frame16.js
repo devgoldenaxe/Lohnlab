@@ -366,6 +366,11 @@ function frame16(
   textBox1Value,
   ComboBox1
 ) {
+
+  let resultg3 = {
+    G3: 0,
+    T8: 0
+  };
   let E2 = "brutto";
 
   let Daten = {
@@ -716,6 +721,8 @@ function frame16(
       //console.log("Total R value:", totalR);
       console.log("T8:", Math.round(averageR * 100) / 100);
       console.log("BMvalue---1", data[0]["BM"]);
+      resultg3.G3 = G3;
+      resultg3.T8 = T8;
     }
 
     process_G3(data);
@@ -728,6 +735,7 @@ function frame16(
       error
     );
   }
+  return resultg3;
 }
 export default frame16;
 // frame16(
