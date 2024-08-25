@@ -124,7 +124,7 @@ function drucken(data) {
     }
     //Handy
     if (AN5 > 0) {
-      if (inputa == "ja") {
+      if (inputb == "ja") {
         for (let i = 0; i < data.length; i++) {
           data[i].AO = "ja";
         }
@@ -132,7 +132,7 @@ function drucken(data) {
     }
     // Garage
     if (AR5 > 0) {
-      if (inputa == "ja") {
+      if (inputb == "ja") {
         for (let i = 0; i < data.length; i++) {
           data[i].AS = "ja";
         }
@@ -140,7 +140,7 @@ function drucken(data) {
     }
     // Fehlgeld
     if (AT5 > 0) {
-      if (inputa == "ja") {
+      if (inputb == "ja") {
         for (let i = 0; i < data.length; i++) {
           data[i].AU = "ja";
         }
@@ -148,7 +148,7 @@ function drucken(data) {
     }
     // Verpflegung
     if (AT5 > 0) {
-      if (inputa == "ja") {
+      if (inputb == "ja") {
         for (let i = 0; i < data.length; i++) {
           data[i].BD = "ja";
         }
@@ -156,7 +156,7 @@ function drucken(data) {
     }
     // KiGa
     if (BI5 > 0) {
-      if (inputa == "ja") {
+      if (inputb == "ja") {
         for (let i = 0; i < data.length; i++) {
           data[i].BJ = "ja";
         }
@@ -164,7 +164,7 @@ function drucken(data) {
     }
     // Fahrtkosten
     if (BK5 > 0) {
-      if (inputa == "ja") {
+      if (inputb == "ja") {
         for (let i = 0; i < data.length; i++) {
           data[i].BL = "ja";
         }
@@ -172,7 +172,7 @@ function drucken(data) {
     }
     // Internet
     if (BM5 > 0) {
-      if (inputa == "ja") {
+      if (inputb == "ja") {
         for (let i = 0; i < data.length; i++) {
           data[i].BN = "ja";
         }
