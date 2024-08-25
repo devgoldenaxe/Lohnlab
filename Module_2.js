@@ -7,7 +7,7 @@ function setzen(data, BSlist) {
   let garage = 40;
   let Fehlgeld = 16;
 
-  console.log("test - ", data[0]["BI"]);
+  //console.log("test - ", data[0]["BI"]);
 
   function processBS(BS) {
     let Daten = {

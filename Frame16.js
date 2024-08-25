@@ -716,10 +716,10 @@ function frame16(
         totalR += R;
       }
 
-      let averageR = totalR / data.length;
+      let T8 = totalR / data.length;
 
       //console.log("Total R value:", totalR);
-      console.log("T8:", Math.round(averageR * 100) / 100);
+      console.log("T8:", Math.round(T8 * 100) / 100);
       console.log("BMvalue---1", data[0]["BM"]);
       resultg3.G3 = G3;
       resultg3.T8 = T8;
