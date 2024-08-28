@@ -1,0 +1,861 @@
+Option Explicit
+
+Private Sub btnFilter_Click()
+    Calendary.Show
+End Sub
+
+Private Sub Camisa_Click()
+
+End Sub
+
+Private Sub CommandButton2_Click()
+
+
+
+End Sub
+
+Private Sub CommandButton3_Click()
+Dim sTmp As String, i, LetzteZeile As Integer
+LetzteZeile = Sheets("Daten").UsedRange.SpecialCells(xlCellTypeLastCell).Row
+
+i = ListBox1.ListIndex
+If i > 0 Then
+sTmp = ListBox1
+With ListBox1
+.List(i) = .List(i - 1)
+.List(i - 1) = sTmp
+.ListIndex = i - 1
+Sheets("Daten").Range("A16:A" & LetzteZeile) = .List
+End With
+Sheets("Daten").Range("L2").value = Sheets("Daten").Range("A16").value
+Sheets("Daten").Range("L3").value = Sheets("Daten").Range("A17").value
+Sheets("Daten").Range("L4").value = Sheets("Daten").Range("A18").value
+Sheets("Daten").Range("L5").value = Sheets("Daten").Range("A19").value
+Sheets("Daten").Range("L6").value = Sheets("Daten").Range("A20").value
+Sheets("Daten").Range("L7").value = Sheets("Daten").Range("A21").value
+Sheets("Daten").Range("L8").value = Sheets("Daten").Range("A22").value
+Sheets("Daten").Range("L9").value = Sheets("Daten").Range("A23").value
+Sheets("Daten").Range("L10").value = Sheets("Daten").Range("A24").value
+Sheets("Daten").Range("L11").value = Sheets("Daten").Range("A25").value
+Else
+MsgBox "bitte zunächst einen Baustein anklicken, der nach oben verschoben werden soll"
+End If
+End Sub
+
+Private Sub CommandButton4_Click()
+Dim sTmp As String, i, LetzteZeile As Integer
+LetzteZeile = Sheets("Daten").UsedRange.SpecialCells(xlCellTypeLastCell).Row
+i = ListBox1.ListIndex
+If i > -1 And i < ListBox1.ListCount - 1 Then
+sTmp = ListBox1
+With ListBox1
+.List(i) = .List(i + 1)
+.List(i + 1) = sTmp
+.ListIndex = i + 1
+Sheets("Daten").Range("A16:A" & LetzteZeile) = .List
+End With
+Sheets("Daten").Range("L2").value = Sheets("Daten").Range("A16").value
+Sheets("Daten").Range("L3").value = Sheets("Daten").Range("A17").value
+Sheets("Daten").Range("L4").value = Sheets("Daten").Range("A18").value
+Sheets("Daten").Range("L5").value = Sheets("Daten").Range("A19").value
+Sheets("Daten").Range("L6").value = Sheets("Daten").Range("A20").value
+Sheets("Daten").Range("L7").value = Sheets("Daten").Range("A21").value
+Sheets("Daten").Range("L8").value = Sheets("Daten").Range("A22").value
+Sheets("Daten").Range("L9").value = Sheets("Daten").Range("A23").value
+Sheets("Daten").Range("L10").value = Sheets("Daten").Range("A24").value
+Sheets("Daten").Range("L11").value = Sheets("Daten").Range("A25").value
+Else
+MsgBox "bitte zunächst einen Baustein anklicken, der nach unten verschoben werden soll"
+End If
+End Sub
+
+Private Sub CommandButton5_Click()
+
+End Sub
+
+
+
+Private Sub CommandButton6_Click()
+
+
+End Sub
+
+Private Sub Container_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+    Call moverForm(Me, Container, Button)
+End Sub
+
+Private Sub btnMenu_Click()
+    Dim i As Long
+'    On Error Resume Next
+    If Me.sidebar.Width = 186 Then
+        DoEvents
+        i = 186
+        Do Until i = 60
+            Sleep 0.000000000001
+            Me.sidebar.Width = i
+            Me.Container.Left = Me.sidebar.Width
+            Me.Container.Width = Me.Width
+            i = i - 1
+        Loop
+        Camisa.Visible = False
+    Else
+        DoEvents
+        For i = 60 To 186
+            Sleep 0.000000000001
+            Me.sidebar.Width = i
+            Me.Container.Left = Me.sidebar.Width
+            Me.Container.Width = Me.Width
+        Next
+        Camisa.Visible = True
+    End If
+    Call UserForm_Resize
+End Sub
+
+Private Sub Frame16_Click()
+Dim intFirstRow, intLastRow As Long
+Dim brutto As Single
+Dim i, ii As Integer
+Dim stkl As Long
+Dim faktor, faktor2 As Single
+Dim zähler As Long
+Dim auswahl As String
+Dim Diagramm As Object
+Dim Dateiname As String
+
+On Error GoTo handling
+
+
+If Sheets("Liste AN Bausteine").Cells(5, 38).value > 0 Or Sheets("Liste AN Bausteine").Cells(5, 40).value > 0 _
+Or Sheets("Liste AN Bausteine").Cells(5, 42).value > 0 Or Sheets("Liste AN Bausteine").Cells(5, 44).value > 0 _
+Or Sheets("Liste AN Bausteine").Cells(5, 46).value > 0 Or Sheets("Liste AN Bausteine").Cells(5, 50).value > 0 _
+Or Sheets("Liste AN Bausteine").Cells(5, 63).value > 0 Or Sheets("Liste AN Bausteine").Cells(5, 65).value > 0 Then
+
+    Select Case MsgBox("Es sind bereits Bausteine verteilt. Handelt es sich um einen Bestandskunden?", vbYesNo)
+        Case vbYes
+        MsgBox "Bestandskunde: es werden nur Bausteine berechnet, die noch nicht oder noch nicht vollständig ausgenutzt werden"
+        Case vbNo
+        MsgBox "kein Bestandskunde, alle bereits verteilten Bausteine werden gelöscht"
+        Call leeren
+    End Select
+
+End If
+
+
+
+With app
+.ProgressBar1.value = 10
+.ProgressBar1.Visible = True
+End With
+
+Worksheets("Daten").Range("J3").value = CDbl(TextBox1.value) / 100
+Worksheets("Daten").Range("J1").value = TextBox6.value
+Worksheets("Daten").Range("J2").value = TextBox7.value
+Worksheets("Daten").Range("J5").value = TextBox8.value
+
+
+
+
+Worksheets("Liste AN Bausteine").Select
+intFirstRow = 7
+intLastRow = findlastrow(5)
+
+For i = intFirstRow To intLastRow
+
+Worksheets("Liste AN Bausteine").Cells(intFirstRow, 18).value = 1000
+Sheets("Liste AN Bausteine").Range("E2").value = "netto"
+Sheets("Daten").Range("J3").value = 0
+
+
+    If Worksheets("Liste AN Bausteine").Cells(intFirstRow, 19).value = "ja" And Worksheets("Liste AN Bausteine").Cells(intFirstRow, 22).value <> "" Then
+    MsgBox "In Zeile " & intFirstRow & " ist Dienstwagen und km Erstattung gleichzeitig eingetragen, km angabe wird entfernt"
+    Worksheets("Liste AN Bausteine").Cells(intFirstRow, 22).value = ""
+    End If
+
+    If Worksheets("Liste AN Bausteine").Cells(intFirstRow, 29).value = "ja" And Worksheets("Liste AN Bausteine").Cells(intFirstRow, 22).value <> "" Then
+    MsgBox "In Zeile " & intFirstRow & " ist vorhandenes JobTicket und km Erstattung gleichzeitig eingetragen, km angabe wird entfernt"
+    Worksheets("Liste AN Bausteine").Cells(intFirstRow, 22).value = ""
+    End If
+
+    If Worksheets("Liste AN Bausteine").Cells(intFirstRow, 25).value = "" Then Worksheets("Liste AN Bausteine").Cells(intFirstRow, 25).value = 5
+
+                    If TextBox1.value = "" Then TextBox1.value = "0"
+                    If TextBox1.value = "0" Then
+                    faktor = 1
+                    Else
+                    faktor = 1 + (CDbl(TextBox1.value) / 100)
+                    End If
+            
+                        
+            
+                        If Sheets("Liste AN Bausteine").Range("E2").value = "netto" Then
+                        Worksheets("Liste AN Bausteine").Cells(intFirstRow, 18).value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 18).value * faktor
+                        Worksheets("Liste AN Bausteine").Cells(intFirstRow, 31).value = "netto"
+
+                        End If
+                        
+                        If Sheets("Liste AN Bausteine").Range("E2").value = "brutto" Then
+                        Worksheets("Liste AN Bausteine").Cells(intFirstRow, 18).value = ((Worksheets("Liste AN Bausteine").Cells(intFirstRow, 18).value) / 2) * (Worksheets("Liste AN Bausteine").Cells(intFirstRow, 17).value) * faktor
+                        Worksheets("Liste AN Bausteine").Cells(intFirstRow, 31).value = "brutto"
+
+                        End If
+
+
+
+intFirstRow = intFirstRow + 1
+
+Next i
+
+With app
+.ProgressBar1.value = 20
+End With
+
+Call setzen
+intFirstRow = 7
+' intLastRow = findlastrow(5)
+
+For i = intFirstRow To intLastRow
+
+Worksheets("Liste AN Bausteine").Cells(intFirstRow, 18).value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 76).value
+Worksheets("Liste AN Bausteine").Cells(intFirstRow, 32).value = ""
+Worksheets("Liste AN Bausteine").Cells(intFirstRow, 33).value = ""
+
+Worksheets("Liste AN Bausteine").Cells(intFirstRow, 81).value = (Worksheets("Liste AN Bausteine").Cells(intFirstRow, 18).value / Worksheets("Liste AN Bausteine").Cells(intFirstRow, 17).value) * 2
+
+If Sheets("Liste AN Bausteine").Cells(intFirstRow, 81).value > 0 Then
+Sheets("Liste AN Bausteine").Cells(intFirstRow, 30).value = ((Sheets("Liste AN Bausteine").Cells(intFirstRow, 81).value - Sheets("Liste AN Bausteine").Cells(intFirstRow, 33).value) * Sheets("Liste AN Bausteine").Cells(6, 30).value) / 100
+End If
+
+
+intFirstRow = intFirstRow + 1
+
+
+Next i
+
+With app
+.Image17.Visible = True
+    .Label52.Caption = Format(Round(Sheets("Daten").Range("G3").value, 2), ("#,##0")) & " €"
+.Label17.Caption = Round(Sheets("Daten").Range("T8").value, 2) & " €"
+
+.ProgressBar1.Visible = False
+Application.Wait Now + TimeSerial(0, 0, 3)
+.Image17.Visible = False
+End With
+' Set Diagramm = Worksheets("Folha1").ChartObjects(1).Chart
+'    Dateiname = ThisWorkbook.Path & Application.PathSeparator & "diagramm.gif"
+'    Diagramm.Export Filename:=Dateiname, FilterName:="GIF"
+'    app.Image13.Picture = LoadPicture(Dateiname)
+'    Kill Dateiname
+Exit Sub
+
+handling:
+MsgBox "upps, da ist leider ein Fehler aufgetreten, bitte wenden Sie sich an office@lohnkonzepte.de und melden sie den Fehler: BS_All_2"
+
+Application.Visible = True
+End Sub
+
+Private Sub Label6_Click()
+Sheets("Liste AN Bausteine").Range("AF7:AG507").ClearContents
+Sheets("Liste AN Bausteine").Range("AL7:BV507").ClearContents
+Sheets("Liste AN Bausteine").Range("AD7:AD507").ClearContents
+Sheets("Liste AN Bausteine").Range("BZ7:BZ507").ClearContents
+Sheets("Liste AN Bausteine").Range("CC7:CC507").ClearContents
+Sheets("Liste AN Bausteine").Range("E3:E4").ClearContents
+Sheets("Liste AN Bausteine").Range("O3:O4").ClearContents
+i = 1
+zzzz = 38
+
+For i = 1 To 37
+ausblenden = Sheets("Daten2").Cells(i, 16).Text
+If Sheets("Liste AN Bausteine").Cells(5, zzzz).value = 0 Then Sheets("Liste AN Bausteine").Range(ausblenden & ":" & ausblenden).EntireColumn.Hidden = True
+zzzz = zzzz + 1
+Next i
+Sheets("Liste AN Bausteine").Range("U:U").EntireColumn.Hidden = True
+' Sheets("Liste AN Bausteine").Range("X:X").EntireColumn.Hidden = True
+
+With app
+.Label6.Caption = "Bausteine gelöscht"
+.Label6.BackColor = vbRed
+End With
+
+
+End Sub
+
+
+
+Private Sub MenuCustomers_Click()
+Unload Me
+    Application.Visible = True
+End Sub
+
+Private Sub MenuDashboard_Click()
+
+On Error GoTo handling
+
+With app
+.ProgressBar1.value = 10
+.ProgressBar1.Visible = True
+End With
+
+Call drucken
+
+With app
+.Image17.Visible = True
+    .Label52.Caption = Format(Round(Sheets("Daten").Range("G3").value, 2), ("#,##0")) & " €"
+
+.ProgressBar1.Visible = False
+Application.Wait Now + TimeSerial(0, 0, 3)
+.Image17.Visible = False
+End With
+
+
+Exit Sub
+
+handling:
+MsgBox "upps, da ist leider ein Fehler aufgetreten, bitte wenden Sie sich an office@lohnkonzepte.de und melden sie den Fehler: BS_Print_5"
+
+Application.Visible = True
+
+
+End Sub
+
+Private Sub MenuInventory_Click()
+Dim brutto As Single
+Dim intFirstRow, intLastRow As Long
+Dim i, ii As Integer
+Dim stkl As Long
+Dim faktor, faktor2 As Single
+Dim zähler As Long
+Dim auswahl As String
+Dim Diagramm As Object
+Dim Dateiname As String
+
+On Error GoTo handling
+
+With app
+.ProgressBar1.value = 10
+.ProgressBar1.Visible = True
+If .TextBox3.value = "" Then .TextBox3.value = 0
+If .TextBox4.value = "" Then .TextBox4.value = 0
+If .TextBox5.value = "" Then .TextBox5.value = 0
+If .TextBox6.value = "" Then .TextBox6.value = 0
+
+    If .TextBox3 > 0 And .TextBox4 > 0 Then
+    MsgBox "Wählen Sie bitte eine Gehaltserhöhung in % ODER eine Gehaltserhöhung in Euro, einer der beiden Werte muss Null sein"
+    Exit Sub
+    End If
+
+End With
+
+
+
+If Sheets("Liste AN Bausteine").Cells(5, 38).value > 0 Or Sheets("Liste AN Bausteine").Cells(5, 40).value > 0 _
+Or Sheets("Liste AN Bausteine").Cells(5, 42).value > 0 Or Sheets("Liste AN Bausteine").Cells(5, 44).value > 0 _
+Or Sheets("Liste AN Bausteine").Cells(5, 46).value > 0 Or Sheets("Liste AN Bausteine").Cells(5, 50).value > 0 _
+Or Sheets("Liste AN Bausteine").Cells(5, 63).value > 0 Or Sheets("Liste AN Bausteine").Cells(5, 65).value > 0 Then
+
+    Select Case MsgBox("Es sind bereits Bausteine verteilt. Handelt es sich um einen Bestandskunden?", vbYesNo)
+        Case vbYes
+        MsgBox "Bestandskunde: es werden nur Bausteine berechnet, die noch nicht oder noch nicht vollständig ausgenutzt werden"
+        Case vbNo
+        MsgBox "kein Bestandskunde, alle bereits verteilten Bausteine werden gelöscht"
+        Call leeren
+    End Select
+
+End If
+
+
+
+
+
+Sheets("Daten2").Range("D1").value = CDbl(TextBox5.value)
+
+Sheets("Liste AN Bausteine").Range("E2").value = ComboBox1.value
+Sheets("Liste AN Bausteine").Range("O4").value = TextBox1.value & " %"
+Sheets("Liste AN Bausteine").Range("O3").value = "Aufschlag:"
+' Range mit Mitarbeiterdaten bestimmen
+' Das ist die Zeile 7 bis Letzte befüllte Zeile der Spalte G (Nachname)
+
+Worksheets("Liste AN Bausteine").Select
+intFirstRow = 7
+intLastRow = findlastrow(5)
+If TextBox1.value = "" Then TextBox1.value = 0
+Worksheets("Daten").Range("J3").value = CDbl(TextBox1.value) / 100
+Worksheets("Daten").Range("J1").value = TextBox6.value
+Worksheets("Daten").Range("J2").value = TextBox7.value
+Worksheets("Daten").Range("J5").value = TextBox8.value
+
+
+
+' Schleife über alle Mitarbeiter
+ii = 1
+
+For ii = 1 To 2
+
+With app
+.ProgressBar1.value = 20
+End With
+
+If ii = 1 Then Call Faktoren
+
+
+With app
+.ProgressBar1.value = .ProgressBar1.value + 20
+End With
+
+
+For i = intFirstRow To intLastRow
+If ComboBox1.value = "netto" Then Worksheets("Liste AN Bausteine").Cells(intFirstRow, 31).value = "netto"
+If ComboBox1.value = "brutto" Then Worksheets("Liste AN Bausteine").Cells(intFirstRow, 31).value = "brutto"
+
+    If Worksheets("Liste AN Bausteine").Cells(intFirstRow, 19).value = "ja" And Worksheets("Liste AN Bausteine").Cells(intFirstRow, 22).value <> "" Then
+    MsgBox "In Zeile " & intFirstRow & " ist Dienstwagen und km Erstattung gleichzeitig eingetragen, km angabe wird entfernt"
+    Worksheets("Liste AN Bausteine").Cells(intFirstRow, 22).value = ""
+    End If
+
+    If Worksheets("Liste AN Bausteine").Cells(intFirstRow, 29).value = "ja" And Worksheets("Liste AN Bausteine").Cells(intFirstRow, 22).value <> "" Then
+    MsgBox "In Zeile " & intFirstRow & " ist vorhandenes JobTicket und km Erstattung gleichzeitig eingetragen, km angabe wird entfernt"
+    Worksheets("Liste AN Bausteine").Cells(intFirstRow, 22).value = ""
+    End If
+
+    If Worksheets("Liste AN Bausteine").Cells(intFirstRow, 25).value = "" Then Worksheets("Liste AN Bausteine").Cells(intFirstRow, 25).value = 5
+
+
+If CDbl(TextBox5.value) > 0 Then Worksheets("Liste AN Bausteine").Cells(intFirstRow, 26).value = CDbl(TextBox5.value)
+
+
+If TextBox3.value = "" Then TextBox3.value = "0"
+If TextBox4.value = "" Then TextBox4.value = "0"
+
+            If TextBox3.value <> "0" Then
+                    If TextBox1.value = "0" Then
+                    faktor = 1
+                    Else
+                    faktor = 1 + (CDbl(TextBox1.value) / 100)
+                    End If
+            
+                        
+            
+                        If Sheets("Liste AN Bausteine").Range("E2").value = "netto" Then
+                        Worksheets("Liste AN Bausteine").Cells(intFirstRow, 18).value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 15).value * (CDbl(TextBox3.value) / 100) * faktor
+                        Worksheets("Liste AN Bausteine").Range("E3").value = "Erhöhung in %"
+                        Worksheets("Liste AN Bausteine").Range("E4").value = TextBox3.value
+                        End If
+                        
+                        If Sheets("Liste AN Bausteine").Range("E2").value = "brutto" Then
+                        Worksheets("Liste AN Bausteine").Cells(intFirstRow, 18).value = ((Worksheets("Liste AN Bausteine").Cells(intFirstRow, 15).value * (CDbl(TextBox3.value) / 100)) / 2) * Worksheets("Liste AN Bausteine").Cells(intFirstRow, 17).value * faktor
+                        Worksheets("Liste AN Bausteine").Range("E3").value = "Erhöhung in %"
+                        Worksheets("Liste AN Bausteine").Range("E4").value = TextBox3.value
+                        Worksheets("Liste AN Bausteine").Cells(intFirstRow, 81).value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 15).value * (CDbl(TextBox3.value) / 100) * faktor
+                        
+                        End If
+                        
+                        
+                        
+            End If
+
+            If TextBox4.value <> "0" Then
+                    If TextBox1.value = "0" Then
+                    faktor = 1
+                    Else
+                    faktor = 1 + (CDbl(TextBox1.value) / 100)
+                    End If
+            
+                        
+            
+                        If Sheets("Liste AN Bausteine").Range("E2").value = "netto" Then
+                        Worksheets("Liste AN Bausteine").Cells(intFirstRow, 18).value = CDbl(TextBox4.value) * faktor
+                        Worksheets("Liste AN Bausteine").Range("E3").value = "Erhöhung fix"
+                        Worksheets("Liste AN Bausteine").Range("E4").value = TextBox4.value
+                        End If
+                        
+                        If Sheets("Liste AN Bausteine").Range("E2").value = "brutto" Then
+                        Worksheets("Liste AN Bausteine").Cells(intFirstRow, 18).value = ((CDbl(TextBox4.value) / 2) * Worksheets("Liste AN Bausteine").Cells(intFirstRow, 17).value) * faktor
+                        Worksheets("Liste AN Bausteine").Range("E3").value = "Erhöhung fix"
+                        Worksheets("Liste AN Bausteine").Range("E4").value = TextBox4.value
+                        Worksheets("Liste AN Bausteine").Cells(intFirstRow, 81).value = CDbl(TextBox4.value) * faktor
+                        End If
+                        
+
+            End If
+
+intFirstRow = intFirstRow + 1
+Next i
+
+If ii = 1 Then Call Faktoren
+intFirstRow = 7
+Next ii
+
+
+Call setzen
+Worksheets("Liste AN Bausteine").Select
+intFirstRow = 7
+' intLastRow = findlastrow(5)
+
+For i = intFirstRow To intLastRow
+If Worksheets("Liste AN Bausteine").Cells(intFirstRow, 31).value = "netto" Then Worksheets("Liste AN Bausteine").Cells(intFirstRow, 81).value = (Worksheets("Liste AN Bausteine").Cells(intFirstRow, 18).value / Worksheets("Liste AN Bausteine").Cells(intFirstRow, 17).value) * 2
+
+If Sheets("Liste AN Bausteine").Cells(intFirstRow, 81).value > 0 Then
+Sheets("Liste AN Bausteine").Cells(intFirstRow, 30).value = ((Sheets("Liste AN Bausteine").Cells(intFirstRow, 81).value - Sheets("Liste AN Bausteine").Cells(intFirstRow, 33).value) * Sheets("Liste AN Bausteine").Cells(6, 30).value) / 100
+End If
+
+
+intFirstRow = intFirstRow + 1
+Next i
+
+
+With app
+.Image17.Visible = True
+    .Label52.Caption = Format(Round(Sheets("Daten").Range("G3").value, 2), ("#,##0")) & " €"
+.Label17.Caption = Round(Sheets("Daten").Range("T8").value, 2) & " €"
+
+.ProgressBar1.Visible = False
+Application.Wait Now + TimeSerial(0, 0, 3)
+.Image17.Visible = False
+End With
+' Set Diagramm = Worksheets("Folha1").ChartObjects(1).Chart
+'    Dateiname = ThisWorkbook.Path & Application.PathSeparator & "diagramm.gif"
+'    Diagramm.Export Filename:=Dateiname, FilterName:="GIF"
+'    app.Image13.Picture = LoadPicture(Dateiname)
+'    Kill Dateiname
+
+Exit Sub
+
+handling:
+
+MsgBox "upps, da ist leider ein Fehler aufgetreten, bitte wenden Sie sich an office@lohnkonzepte.de und melden sie den Fehler: BS_Par_5"
+
+Application.Visible = True
+End Sub
+
+Private Sub MenuLogout_Click()
+    Unload Me
+    Application.Visible = True
+End Sub
+
+Private Sub MenuOrders_Click()
+UserForm3.Show
+End Sub
+
+Private Sub MenuProjects_Click()
+
+Dim i, zzzz As Long
+Dim ausblenden As String
+Dim Diagramm As Object
+Dim Dateiname As String
+
+With app
+.ProgressBar1.value = 10
+.ProgressBar1.Visible = True
+End With
+
+Sheets("Liste AN Bausteine").Range("AF7:AG507").ClearContents
+Sheets("Liste AN Bausteine").Range("AL7:BV507").ClearContents
+Sheets("Liste AN Bausteine").Range("AD7:AD507").ClearContents
+Sheets("Liste AN Bausteine").Range("BZ7:BZ507").ClearContents
+Sheets("Liste AN Bausteine").Range("CC7:CC507").ClearContents
+Sheets("Liste AN Bausteine").Range("E3:E4").ClearContents
+Sheets("Liste AN Bausteine").Range("O3:O4").ClearContents
+i = 1
+zzzz = 38
+
+For i = 1 To 37
+With app
+.ProgressBar1.value = .ProgressBar1.value + 2.4
+End With
+
+ausblenden = Sheets("Daten2").Cells(i, 16).Text
+If Sheets("Liste AN Bausteine").Cells(5, zzzz).value = 0 Then Sheets("Liste AN Bausteine").Range(ausblenden & ":" & ausblenden).EntireColumn.Hidden = True
+zzzz = zzzz + 1
+Next i
+Sheets("Liste AN Bausteine").Range("U:U").EntireColumn.Hidden = True
+' Sheets("Liste AN Bausteine").Range("X:X").EntireColumn.Hidden = True
+
+
+
+With app
+.Image17.Visible = True
+    .Label52.Caption = Format(Round(Sheets("Daten").Range("G3").value, 2), ("#,##0")) & " €"
+.Label17.Caption = Round(Sheets("Daten").Range("T8").value, 2) & " €"
+.ProgressBar1.Visible = False
+Application.Wait Now + TimeSerial(0, 0, 3)
+.Image17.Visible = False
+End With
+
+'Set Diagramm = Worksheets("Folha1").ChartObjects(1).Chart
+'    Dateiname = ThisWorkbook.Path & Application.PathSeparator & "diagramm.gif"
+'    Diagramm.Export Filename:=Dateiname, FilterName:="GIF"
+'    app.Image13.Picture = LoadPicture(Dateiname)
+'    Kill Dateiname
+
+
+End Sub
+
+Private Sub MenuTasks_Click()
+Dim intFirstRow, intLastRow As Long
+Dim brutto As Single
+Dim i, ii As Integer
+Dim stkl As Long
+Dim faktor, faktor2 As Single
+Dim zähler As Long
+Dim auswahl As String
+Dim Diagramm As Object
+Dim Dateiname As String
+
+On Error GoTo handling
+
+
+If Sheets("Liste AN Bausteine").Cells(5, 38).value > 0 Or Sheets("Liste AN Bausteine").Cells(5, 40).value > 0 _
+Or Sheets("Liste AN Bausteine").Cells(5, 42).value > 0 Or Sheets("Liste AN Bausteine").Cells(5, 44).value > 0 _
+Or Sheets("Liste AN Bausteine").Cells(5, 46).value > 0 Or Sheets("Liste AN Bausteine").Cells(5, 50).value > 0 _
+Or Sheets("Liste AN Bausteine").Cells(5, 63).value > 0 Or Sheets("Liste AN Bausteine").Cells(5, 65).value > 0 Then
+
+    Select Case MsgBox("Es sind bereits Bausteine verteilt. Handelt es sich um einen Bestandskunden?", vbYesNo)
+        Case vbYes
+        MsgBox "Bestandskunde: es werden nur Bausteine berechnet, die noch nicht oder noch nicht vollständig ausgenutzt werden"
+        Case vbNo
+        MsgBox "kein Bestandskunde, alle bereits verteilten Bausteine werden gelöscht"
+        Call leeren
+    End Select
+
+End If
+
+
+
+With app
+.ProgressBar1.value = 10
+.ProgressBar1.Visible = True
+End With
+
+
+
+Worksheets("Daten").Range("J3").value = CDbl(TextBox1.value) / 100
+Worksheets("Daten").Range("J1").value = TextBox6.value
+Worksheets("Daten").Range("J2").value = TextBox7.value
+Worksheets("Daten").Range("J5").value = TextBox8.value
+
+Sheets("Daten2").Range("D1").value = CDbl(TextBox5.value)
+Worksheets("Liste AN Bausteine").Range("E3").value = "Erhöhung"
+Worksheets("Liste AN Bausteine").Range("E4").value = "individuell"
+Sheets("Liste AN Bausteine").Range("E2").value = ComboBox1.value
+Sheets("Liste AN Bausteine").Range("O4").value = TextBox1.value & " %"
+Sheets("Liste AN Bausteine").Range("O3").value = "Aufschlag:"
+
+Call Faktoren
+Worksheets("Liste AN Bausteine").Select
+intFirstRow = 7
+intLastRow = findlastrow(5)
+
+For i = intFirstRow To intLastRow
+
+    If Worksheets("Liste AN Bausteine").Cells(intFirstRow, 19).value = "ja" And Worksheets("Liste AN Bausteine").Cells(intFirstRow, 22).value <> "" Then
+    MsgBox "In Zeile " & intFirstRow & " ist Dienstwagen und km Erstattung gleichzeitig eingetragen, km angabe wird entfernt"
+    Worksheets("Liste AN Bausteine").Cells(intFirstRow, 22).value = ""
+    End If
+
+    If Worksheets("Liste AN Bausteine").Cells(intFirstRow, 29).value = "ja" And Worksheets("Liste AN Bausteine").Cells(intFirstRow, 22).value <> "" Then
+    MsgBox "In Zeile " & intFirstRow & " ist vorhandenes JobTicket und km Erstattung gleichzeitig eingetragen, km angabe wird entfernt"
+    Worksheets("Liste AN Bausteine").Cells(intFirstRow, 22).value = ""
+    End If
+
+    If Worksheets("Liste AN Bausteine").Cells(intFirstRow, 25).value = "" Then Worksheets("Liste AN Bausteine").Cells(intFirstRow, 25).value = 5
+
+                    If TextBox1.value = "0" Then
+                    faktor = 1
+                    Else
+                    faktor = 1 + (CDbl(TextBox1.value) / 100)
+                    End If
+            
+                        
+            
+                        If Sheets("Liste AN Bausteine").Range("E2").value = "netto" Then
+                        Worksheets("Liste AN Bausteine").Cells(intFirstRow, 18).value = Worksheets("Liste AN Bausteine").Cells(intFirstRow, 18).value * faktor
+                        Worksheets("Liste AN Bausteine").Cells(intFirstRow, 31).value = "netto"
+
+                        End If
+                        
+                        If Sheets("Liste AN Bausteine").Range("E2").value = "brutto" Then
+                        Worksheets("Liste AN Bausteine").Cells(intFirstRow, 18).value = ((Worksheets("Liste AN Bausteine").Cells(intFirstRow, 18).value) / 2) * (Worksheets("Liste AN Bausteine").Cells(intFirstRow, 17).value) * faktor
+                        Worksheets("Liste AN Bausteine").Cells(intFirstRow, 31).value = "brutto"
+
+                        End If
+
+
+
+intFirstRow = intFirstRow + 1
+
+Next i
+
+
+Call setzen
+intFirstRow = 7
+' intLastRow = findlastrow(5)
+
+For i = intFirstRow To intLastRow
+Worksheets("Liste AN Bausteine").Cells(intFirstRow, 81).value = (Worksheets("Liste AN Bausteine").Cells(intFirstRow, 18).value / Worksheets("Liste AN Bausteine").Cells(intFirstRow, 17).value) * 2
+
+If Sheets("Liste AN Bausteine").Cells(intFirstRow, 81).value > 0 Then
+Sheets("Liste AN Bausteine").Cells(intFirstRow, 30).value = ((Sheets("Liste AN Bausteine").Cells(intFirstRow, 81).value - Sheets("Liste AN Bausteine").Cells(intFirstRow, 33).value) * Sheets("Liste AN Bausteine").Cells(6, 30).value) / 100
+End If
+
+
+intFirstRow = intFirstRow + 1
+
+
+Next i
+
+With app
+.Image17.Visible = True
+    .Label52.Caption = Format(Round(Sheets("Daten").Range("G3").value, 2), ("#,##0")) & " €"
+.Label17.Caption = Round(Sheets("Daten").Range("T8").value, 2) & " €"
+
+.ProgressBar1.Visible = False
+Application.Wait Now + TimeSerial(0, 0, 3)
+.Image17.Visible = False
+End With
+'Set Diagramm = Worksheets("Folha1").ChartObjects(1).Chart
+'    Dateiname = ThisWorkbook.Path & Application.PathSeparator & "diagramm.gif"
+'    Diagramm.Export Filename:=Dateiname, FilterName:="GIF"
+'    app.Image13.Picture = LoadPicture(Dateiname)
+'    Kill Dateiname
+
+Exit Sub
+
+handling:
+MsgBox "upps, da ist leider ein Fehler aufgetreten, bitte wenden Sie sich an office@lohnkonzepte.de und melden sie den Fehler: BS_indi_3"
+
+Application.Visible = True
+End Sub
+
+
+
+Private Sub sidebar_Click()
+
+End Sub
+
+Private Sub TextBox9_Change()
+
+With app
+Sheets("Daten").Range("G1").value = CDbl(.TextBox9.value)
+    .Label52.Caption = Format(Round(Sheets("Daten").Range("G3").value, 2), ("#,##0")) & " €"
+End With
+
+End Sub
+
+Private Sub UserForm_DblClick(ByVal Cancel As MSForms.ReturnBoolean)
+    Unload app
+End Sub
+
+Private Sub UserForm_Initialize()
+
+Dim LetzteZeile As Integer
+Dim Diagramm As Object
+Dim Dateiname As String
+    'Set Diagramm = Worksheets("Folha1").ChartObjects(1).Chart
+    'Dateiname = ThisWorkbook.Path & Application.PathSeparator & "diagramm.gif"
+    'Diagramm.Export Filename:=Dateiname, FilterName:="GIF"
+    'app.Image13.Picture = LoadPicture(Dateiname)
+    'Kill Dateiname
+    
+    
+    Call removeTudo(Me)
+    Call Maocursor(Me)
+    Call UserForm_Resize
+
+LetzteZeile = Sheets("Daten").UsedRange.SpecialCells(xlCellTypeLastCell).Row
+LetzteZeile = LetzteZeile + 1
+    With app
+    .Label11.Caption = Sheets("Daten").Range("T6").value
+    .Label13.Caption = Sheets("Daten").Range("T7").value
+    .Label15.Caption = Format(Round(Sheets("Daten").Range("T9").value, 2), ("#,##0")) & " €"
+    .Label52.Caption = Format(Round(Sheets("Daten").Range("G3").value, 2), ("#,##0")) & " €"
+    .Label17.Caption = Round(Sheets("Daten").Range("T8").value, 2) & " €"
+    .TextBox1.value = Sheets("Daten").Range("J3").value * 100
+    .TextBox3.value = "0"
+    .TextBox4.value = "0"
+    .TextBox5.value = "0"
+    .TextBox6.value = Sheets("Daten").Range("J1").value
+    .TextBox7.value = Sheets("Daten").Range("J2").value
+    .TextBox8.value = Sheets("Daten").Range("J5").value
+    .TextBox9.value = Sheets("Daten").Range("T6").value
+
+        With ListBox1
+        .List = Sheets("Daten").Range("A16:A" & LetzteZeile).value
+        .ListIndex = -1
+        End With
+    End With
+   
+
+
+
+   
+   
+   
+Application.Visible = False
+
+End Sub
+
+Private Sub UserForm_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+    Call moverForm(Me, Me, Button)
+End Sub
+
+Private Sub UserForm_Resize()
+    Dim ctrl As Control
+    Dim img  As Control
+    
+    'CONTAINER
+    With Container
+        .Width = Me.Width - (sidebar.Width + 15)
+    End With
+    
+    'USER
+    With CardUser
+        .Left = Container.Width - .Width + 5
+    End With
+    
+    'CARDS
+    For Each ctrl In Container.Controls
+        If TypeName(ctrl) = "Frame" And ctrl.Tag = "Cards" Then
+            ctrl.Width = (Container.Width / 168) * 38
+        End If
+    Next
+    Frame9.Left = 18
+    Frame10.Left = Frame9.Left + Frame9.Width + 12
+    Frame11.Left = Frame10.Left + Frame10.Width + 12
+    Frame12.Left = Frame11.Left + Frame11.Width + 12
+    
+    'IMG CARD
+    For Each ctrl In Container.Controls
+        If TypeName(ctrl) = "Frame" And ctrl.Tag = "Cards" Then
+           For Each img In ctrl.Controls
+              If TypeName(img) = "Image" Then
+                img.Left = ctrl.Width - (img.Width + 6)
+              End If
+           Next
+        End If
+    Next
+
+    'CARD-BODY
+    With CardBody
+        .Width = Calc(Container.Width) - 24
+    End With
+    
+    'CARD CHARTS
+    Me.CardCharts.Left = CardBody.Width + CardBody.Left + 18
+    Me.btnFilter.Left = CardBody.Width - (Me.btnFilter.Width + 12)
+    
+    
+    'SIDEBAR
+    Me.sidebar.Height = Me.Height
+    
+    'MENU LOGOUT
+    Me.MenuLogout.Top = Me.sidebar.Height - (Me.MenuLogout.Height + 18)
+    
+    
+    
+End Sub
+
+Function Calc(value As Double)
+    Calc = value * 0.67
+End Function
+
+

@@ -655,7 +655,19 @@
             let textBox8Value = 1.28;
             let textBox1Value = 5; //
             let ComboBox1 = "brutto";
-            MenuInventory = require("https://devgoldenaxe.github.io/Lohnlab/MenuInventory.js");
+            // MenuInventory = require("https://devgoldenaxe.github.io/Lohnlab/MenuInventory.js");
+            MenuInventory(
+                data,
+                BSlist,
+                textBox3Value,
+                textBox4Value,
+                textBox5Value,
+                textBox6Value,
+                textBox7Value,
+                textBox8Value,
+                textBox1Value,
+                ComboBox1
+            );
             let clearData = {
                 AD: 0,
                 AF: 0,
@@ -704,6 +716,7 @@
             let newData = data.map((item) => {
                 return { ...item, ...clearData };
             });
+            // console.log("Newdata---->", newData);
 
             let result = Frame16(
                 newData,
