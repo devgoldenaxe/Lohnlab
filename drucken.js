@@ -416,7 +416,6 @@ function drucken(data) {
 
       //gehalt code////////
 
-      //Sachbezug
       if (data[i]["AL"] > 0) {
         Gehalt["E18"] = Math.round(data[i]["AL"] * 100) / 100;
         Gehalt["F18"] = 1;
@@ -432,10 +431,10 @@ function drucken(data) {
         Gehalt["F23"] = 1;
         if (data[i]["AS"] === "ja") {
           Gehalt["M52"] = Math.round(Gehalt["M52"] - data[i]["AR"] * 100) / 100;
-        } else {
-          Gehalt["E23"] = 0;
-          Gehalt["F23"] = 0;
         }
+      } else {
+        Gehalt["E23"] = 0;
+        Gehalt["F23"] = 0;
       }
 
       //Fehlgeld
@@ -444,22 +443,24 @@ function drucken(data) {
         Gehalt["F24"] = 1;
         if (data[i]["AU"] === "ja") {
           Gehalt["M52"] = Math.round(Gehalt["M52"] - data[i]["AT"] * 100) / 100;
-        } else {
-          Gehalt["E24"] = 0;
-          Gehalt["F24"] = 0;
         }
+      } else {
+        Gehalt["E24"] = 0;
+        Gehalt["F24"] = 0;
       }
+
       // Verpflegung
       if (data[i]["BC"] > 0) {
         Gehalt["E26"] = Math.round(data[i]["BA"] * 100) / 100;
         Gehalt["F26"] = data[i]["BB"];
         if (data[i]["BD"] === "ja") {
           Gehalt["M52"] = Math.round(Gehalt["M52"] - data[i]["BC"] * 100) / 100;
-        } else {
-          Gehalt["E26"] = 0;
-          Gehalt["F26"] = 0;
         }
+      } else {
+        Gehalt["E26"] = 0;
+        Gehalt["F26"] = 0;
       }
+
       //CL
       if (data[i]["AX"] > 0) {
         Gehalt["E19"] = Math.round(data[i]["AV"] * 100) / 100;
@@ -475,44 +476,48 @@ function drucken(data) {
         Gehalt["F28"] = 1;
         if (data[i]["AO"] === "ja") {
           Gehalt["M52"] = Math.round(Gehalt["M52"] - data[i]["AN"] * 100) / 100;
-        } else {
-          Gehalt["E28"] = 0;
-          Gehalt["F28"] = 0;
         }
+      } else {
+        Gehalt["E28"] = 0;
+        Gehalt["F28"] = 0;
       }
+
       // Kindergarten
       if (data[i]["BI"] > 0) {
         Gehalt["E29"] = Math.round(data[i]["BI"] * 100) / 100;
         Gehalt["F29"] = 1;
         if (data[i]["BJ"] === "ja") {
           Gehalt["M52"] = Math.round(Gehalt["M52"] - data[i]["BI"] * 100) / 100;
-        } else {
-          Gehalt["E29"] = 0;
-          Gehalt["F29"] = 0;
         }
+      } else {
+        Gehalt["E29"] = 0;
+        Gehalt["F29"] = 0;
       }
+
       //Internet
       if (data[i]["BM"] > 0) {
         Gehalt["E30"] = Math.round(data[i]["BM"] * 100) / 100;
         Gehalt["F30"] = 1;
         if (data[i]["BN"] === "ja") {
           Gehalt["M52"] = Math.round(Gehalt["M52"] - data[i]["BM"] * 100) / 100;
-        } else {
-          Gehalt["E30"] = 0;
-          Gehalt["F30"] = 0;
         }
+      } else {
+        Gehalt["E30"] = 0;
+        Gehalt["F30"] = 0;
       }
+
       // Fahrtkosten
       if (data[i]["BK"] > 0) {
         Gehalt["E31"] = Math.round(data[i]["BK"] * 100) / 100;
         Gehalt["F31"] = 1;
         if (data[i]["BL"] === "ja") {
           Gehalt["M52"] = Math.round(Gehalt["M52"] - data[i]["BK"] * 100) / 100;
-        } else {
-          Gehalt["E31"] = 0;
-          Gehalt["F31"] = 0;
         }
+      } else {
+        Gehalt["E31"] = 0;
+        Gehalt["F31"] = 0;
       }
+
       //Werbung
       if (data[i]["AP"] > 0) {
         Gehalt["M60"] = Math.round(Gehalt["M60"] - data[i]["AP"] * 100) / 100;

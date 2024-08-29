@@ -125,6 +125,7 @@ let data = [
     BU: 0,
     BV: 0,
     BW: 0,
+    BX: 0,
     CC: 0,
     CD: 0,
     CE: 0,
