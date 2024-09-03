@@ -733,7 +733,7 @@ function main(
       let Y = sumCF - totalSum;
 
       console.log("Y :", Math.round(Y * 100) / 100);
-      let G2 = (Y * 4) / data.length;
+      let G2 = (Y * data.length) / data.length;
       let G3 = G2 * 12;
       console.log("------- G3:  ", G3);
 
