@@ -531,7 +531,7 @@ function drucken(data) {
             //Werbung
             if (data[i]["AP"] > 0) {
                 Gehalt["M60"] =
-                    Math.round(Gehalt["M60"] - data[i]["AP"] * 100) / 100;
+                    Math.round(Gehalt["M60"] + data[i]["AP"] * 100) / 100;
             } else {
                 Gehalt["M60"] = 0;
             }
