@@ -77,11 +77,20 @@ import faktoren from "https://devgoldenaxe.github.io/Lohnlab/Module_3.js";
 
 function process_Faktoren(data) {
     // let faktoren = require("https://devgoldenaxe.github.io/Lohnlab/Module_3.js");
-    return faktoren(data);
+    return faktoren(
+        data,
+        input_Handy,
+        input_Garage,
+        input_Fehlgeld,
+        input_Verpflegung,
+        input_kiga,
+        input_Fahrtkosten,
+        input_Internet
+    );
 }
 
-let inputa = "";
-let inputb = "ja";
+// let inputa = "";
+// let inputb = "ja";
 
 function drucken(data) {
     let result = [];
@@ -124,7 +133,7 @@ function drucken(data) {
         }
         //Handy
         if (AN5 > 0) {
-            if (inputa == "ja") {
+            if (input_Handy == "ja") {
                 for (let i = 0; i < data.length; i++) {
                     data[i].AO = "ja";
                 }
@@ -132,7 +141,7 @@ function drucken(data) {
         }
         // Garage
         if (AR5 > 0) {
-            if (inputa == "ja") {
+            if (input_Garage == "ja") {
                 for (let i = 0; i < data.length; i++) {
                     data[i].AS = "ja";
                 }
@@ -140,7 +149,7 @@ function drucken(data) {
         }
         // Fehlgeld
         if (AT5 > 0) {
-            if (inputa == "ja") {
+            if (input_Fehlgeld == "ja") {
                 for (let i = 0; i < data.length; i++) {
                     data[i].AU = "ja";
                 }
@@ -148,7 +157,7 @@ function drucken(data) {
         }
         // Verpflegung
         if (AT5 > 0) {
-            if (inputa == "ja") {
+            if (input_Verpflegung == "ja") {
                 for (let i = 0; i < data.length; i++) {
                     data[i].BD = "ja";
                 }
@@ -156,7 +165,7 @@ function drucken(data) {
         }
         // KiGa
         if (BI5 > 0) {
-            if (inputa == "ja") {
+            if (input_kiga == "ja") {
                 for (let i = 0; i < data.length; i++) {
                     data[i].BJ = "ja";
                 }
@@ -164,7 +173,7 @@ function drucken(data) {
         }
         // Fahrtkosten
         if (BK5 > 0) {
-            if (inputa == "ja") {
+            if (input_Fahrtkosten == "ja") {
                 for (let i = 0; i < data.length; i++) {
                     data[i].BL = "ja";
                 }
@@ -172,7 +181,7 @@ function drucken(data) {
         }
         // Internet
         if (BM5 > 0) {
-            if (inputa == "ja") {
+            if (input_Internet == "ja") {
                 for (let i = 0; i < data.length; i++) {
                     data[i].BN = "ja";
                 }
