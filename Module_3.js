@@ -55,9 +55,9 @@ function faktoren(data, Daten) {
       data[i]["O"] = 3000;
     }
     // for (let j = 0; j < data_columns.length; j++) {
-    //   if (!data[i][data_columns[j]]) {
-    //     data[i][data_columns[j]] = EingabeG[j];
-    //   }
+    //     if (!data[i][data_columns[j]]) {
+    //         data[i][data_columns[j]] = EingabeG[j];
+    //     }
     // }
     for (let j = 0; j < data_columns.length; j++) {
       EingabeB[j] = data[i][data_columns[j]];
