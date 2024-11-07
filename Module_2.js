@@ -31,7 +31,7 @@ function setzen(data, BSlist) {
         case "Sachbezug":
           BS_result = 50 - data[i]["AL"] - data[i]["Z"];
           spalte = "AL";
-          //console.log("BS_result", BS_result);
+          console.log("BS_result", spalte, BS_result);
           break;
         case "Handy":
           BS_result = data[i]["T"] - data[i]["AN"];
