@@ -39,7 +39,7 @@ function faktoren(data, Daten) {
   let EingabeG = [
     0.0, 0.0, 0.0, 9.0, 14.6, 1.7, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0,
   ];
-  let EingabeB = [0.0, 0, 0, 9, 14.6, 1.7, 0, 1, 0, 0, 0, 0.0, 0.0];
+  let EingabeB = [0.0, 0, 0, 9, 14.6, 1.7, 0, 0, 0, 0, 0, 0.0, 0.0];
   // let Eingabe = { stkl: 5, brutto: 3490.88 };
   let result;
   for (let i = 0; i < data.length; i++) {
@@ -54,11 +54,11 @@ function faktoren(data, Daten) {
       brutto = 3000;
       data[i]["O"] = 3000;
     }
-    for (let j = 0; j < data_columns.length; j++) {
-      if (!data[i][data_columns[j]]) {
-        data[i][data_columns[j]] = EingabeG[j];
-      }
-    }
+    // for (let j = 0; j < data_columns.length; j++) {
+    //   if (!data[i][data_columns[j]]) {
+    //     data[i][data_columns[j]] = EingabeG[j];
+    //   }
+    // }
     for (let j = 0; j < data_columns.length; j++) {
       EingabeB[j] = data[i][data_columns[j]];
     }
