@@ -37,7 +37,7 @@ function faktoren(data, Daten) {
 
     // bb = 6;
     let EingabeG = [
-        0.0, 0.0, 0.0, 9.0, 14.6, 1.7, 0.0, 1, 0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 9.0, 14.6, 1.7, 0.0, 0, 0.0, 0.0, 0.0, 0.0, 0.0,
     ];
     let EingabeB = [0.0, 0, 0, 9, 14.6, 1.7, 0, 0, 0, 0, 0, 0.0, 0.0];
     // let Eingabe = { stkl: 5, brutto: 3490.88 };
@@ -111,7 +111,7 @@ function faktoren(data, Daten) {
 
     function berechnungCalc(brutto, stkl) {
         let Eingabe = [0, 0, 1979.74, brutto, 2, stkl]; // brutto = 3490.88, stkl = 5
-        Eingabe.push(...EingabeG); // EingabeG = [0.0, 0, 0, 9, 14.6, 1.7, 0, 1, 0, 0, 0, 0.0, 0.0]
+        Eingabe.push(...EingabeB); // EingabeG = [0.0, 0, 0, 9, 14.6, 1.7, 0, 1, 0, 0, 0, 0.0, 0.0]
 
         let P10 =
             Eingabe[7] < 2
