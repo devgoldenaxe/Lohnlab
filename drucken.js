@@ -77,22 +77,22 @@ import faktoren from "https://devgoldenaxe.github.io/Lohnlab/Module_3.js";
 
 function process_Faktoren(data) {
     // let faktoren = require("https://devgoldenaxe.github.io/Lohnlab/Module_3.js");
-    return faktoren(
-        data,
-        input_Handy,
-        input_Garage,
-        input_Fehlgeld,
-        input_Verpflegung,
-        input_kiga,
-        input_Fahrtkosten,
-        input_Internet
-    );
+    return faktoren(data);
 }
 
 // let inputa = "";
 // let inputb = "ja";
 
-function drucken(data) {
+function drucken(
+    data,
+    input_Handy,
+    input_Garage,
+    input_Fehlgeld,
+    input_Verpflegung,
+    input_kiga,
+    input_Fahrtkosten,
+    input_Internet
+) {
     let result = [];
     try {
         let AN5 = 0;
