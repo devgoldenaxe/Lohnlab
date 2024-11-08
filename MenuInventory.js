@@ -292,6 +292,19 @@ let data = [
         CQ: 0,
         CR: 0,
         CS: 0,
+        CT: 0,
+        CU: 0,
+        CV: 0,
+        CW: 9,
+        CX: 14.6,
+        CY: 1.7,
+        CZ: 0,
+        DA: 0,
+        DB: 0,
+        DC: 0,
+        DD: 0,
+        DE: 0,
+        DF: 0,
         C: 12,
         I: "1 / 27 / 1967",
         R: 0,
@@ -362,10 +375,10 @@ function main(
         }
 
         let Daten = {
-            J3: "5%",
-            J1: 22,
+            J3: "0%",
+            J1: 21.95,
             J2: 8.9,
-            J5: 1.28,
+            J5: 1.24,
             P1: 0.025,
             Q4: 0.05,
             Q8: 0.15,
@@ -755,8 +768,8 @@ function main(
 
         process_G3(data);
         console.log(data);
-        // let drucken = require("./drucken.js");
-        // drucken(data);
+        let drucken = require("./drucken.js");
+        drucken(data);
     } catch (e) {
         console.error("An error occurred:", e);
     }
