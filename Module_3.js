@@ -113,6 +113,16 @@ function faktoren(data, Daten) {
         let Eingabe = [0, 0, 1979.74, brutto, 2, stkl]; // brutto = 3490.88, stkl = 5
         Eingabe.push(...EingabeB); // EingabeG = [0.0, 0, 0, 9, 14.6, 1.7, 0, 1, 0, 0, 0, 0.0, 0.0]
 
+        let R5 = 0.25;
+        let R6 = 0.5;
+        let R7 = 0.75;
+        let R8 = 1;
+
+        let Q5 = R5 / 100;
+        let Q6 = R6 / 100;
+        let Q7 = R7 / 100;
+        let Q8 = R8 / 100;
+        
         let P10 =
             Eingabe[7] < 2
                 ? 0
@@ -127,15 +137,7 @@ function faktoren(data, Daten) {
         // let C31 = 1900.00;
         // let C32 = 1900.00;
 
-        let R5 = 0.25;
-        let R6 = 0.5;
-        let R7 = 0.75;
-        let R8 = 1;
-
-        let Q5 = R5 / 100;
-        let Q6 = R6 / 100;
-        let Q7 = R7 / 100;
-        let Q8 = R8 / 100;
+        
         let Q10 = 1.7;
 
         let F3 = 14.0;
