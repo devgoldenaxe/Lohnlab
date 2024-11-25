@@ -46,7 +46,9 @@ function faktoren(data, Daten) {
         brutto = data[i]["O"] + data[i]["Uberstunden"];
         // console.log(brutto);
         stkl = data[i]["Steuerklasse"];
+        console.log(typeof stkl, stkl);
         if (!stkl) {
+            console.log("sktl in");
             stkl = 1;
             data[i]["Steuerklasse"] = 1;
         }
