@@ -249,6 +249,7 @@ function faktoren(data, Daten) {
         let C8 = Eingabe[18] * 100;
         let C9 = Eingabe[14] === 0 ? F15 : F16;
         function calculateC10() {
+            let Eingabe10 = Eingabe[10] * 12;
             let C10;
             if (Eingabe[10] > 20) {
                 let deduction =
@@ -258,7 +259,7 @@ function faktoren(data, Daten) {
                               : sum(F11, F7 / 2)) * min(C5 / 100, F17)
                         : 0;
 
-                C10 = Math.max(C31, roundDown(Eingabe[10] * 12, 2) - deduction);
+                C10 = Math.max(C31, Eingabe10.toFixed(2) - deduction);
             } else {
                 C10 = 0;
             }
