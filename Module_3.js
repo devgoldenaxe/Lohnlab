@@ -879,7 +879,7 @@ function faktoren(data, Daten) {
         let Kirchensteuer =
             Math.trunc(((AblaufResult.B265 * EingabeB[3]) / 10000) * 100) / 100;
         let berechnungResult = berechnungCalc(brutto, stkl, EingabeB);
-        console.log(Lohnsteuer);
+        console.log("Lohnsteuer---->", Lohnsteuer);
         // berechnungResult = {
         //     C9: 0,
         //     G6: 0,
