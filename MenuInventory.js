@@ -531,7 +531,7 @@ function main(
                         faktor = 1 + parseFloat(textBox1Value) / 100;
                     }
 
-                    console.log("R 3 : ", data[i]["R"]);
+                    console.log("R 3 : ", data[i]["R"], textBox1Value, faktor);
                     if (E2 === "netto") {
                         data[i]["R"] = parseFloat(textBox4Value) * faktor;
                         E3 = "Erhöhung in %";
