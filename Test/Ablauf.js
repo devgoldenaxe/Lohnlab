@@ -337,7 +337,7 @@ let EingabeG = [
         ? Math.floor((B261 * 7) / 360)
         : Math.floor(B261 / 360);
     let B265 = B15 > 0 ? B264 : 0;
-    console.log(B240);
+    console.log("B229--->",B229);
     console.log(B241);
     console.log(B242);
     console.log(B243);
