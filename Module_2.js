@@ -38,6 +38,7 @@ function setzen(data, BSlist) {
           spalte = "AN";
           break;
         case "Internet":
+          console.log("BM====++",data[i]["BM"])
           BS_result = 50 - data[i]["BM"];
           spalte = "BM";
           break;
@@ -218,7 +219,7 @@ function setzen(data, BSlist) {
         } else {
           // Internet
 
-          //console.log("Internet BS- 01: ", data[i]["BM"]);
+          console.log("Internet BS- 01: ", BS_result, gesamt);
           if (BS_result > gesamt) {
             BS_result = gesamt;
             gesamt = 0;
