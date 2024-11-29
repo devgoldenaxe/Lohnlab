@@ -868,6 +868,10 @@ function faktoren(data, Daten) {
             B265: B265,
         };
     }
+    console.log("B229--->", B229);
+    console.log("B226--->", B226);
+    console.log("B223--->", B223);
+    console.log("B134--->", B134);
     // calculateAblauf();
 
     function nettoCalc(brutto, stkl, EingabeB, EingabeDateType, type, i) {
