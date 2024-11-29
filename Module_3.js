@@ -1037,6 +1037,7 @@ function faktoren(data, Daten) {
         console.log("B223 - ", B223);
         console.log("B226 - ", B226);
         console.log("B229 - ", B229);
+        console.log("B230 - ", B230);
         console.log("B231 - ", B231);
         console.log("B232 - ", B232);
         console.log("B233 - ", B233);
@@ -1065,11 +1066,11 @@ function faktoren(data, Daten) {
         console.log("B264 - ", B264);
         console.log("B265 - ", B265);
 
-        return {
-            B230: B230,
-            B260: B260,
-            B265: B265,
-        };
+        // return {
+        //     B230: B230,
+        //     B260: B260,
+        //     B265: B265,
+        // };
     }
     // calculateAblauf();
 
