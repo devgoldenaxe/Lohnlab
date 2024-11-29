@@ -863,6 +863,11 @@ function faktoren(data, Daten) {
         console.log("B226--->", B226);
         console.log("B223--->", B223);
         console.log("B134--->", B134);
+        console.log("B119--->", B119);
+        console.log("B116--->", B116);
+        console.log("B84--->", B84);
+        console.log("B119--->", B119);
+        console.log("B18--->", B18);
         return {
             B230: B230,
             B260: B260,
