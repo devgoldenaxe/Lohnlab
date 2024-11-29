@@ -808,6 +808,7 @@ function faktoren(data, Daten) {
                 ? Math.floor((B226 * 7) / 360)
                 : Math.floor(B226 / 360);
         let B230 = B229;
+        console.log("B229--->", B229);
         let B231 = B89 + B88;
         let B232 = B76 - B231 - B113;
         let B233 = B232 < 36 ? 0 : Math.floor(B232 / B84);
@@ -868,10 +869,6 @@ function faktoren(data, Daten) {
             B265: B265,
         };
     }
-    console.log("B229--->", B229);
-    console.log("B226--->", B226);
-    console.log("B223--->", B223);
-    console.log("B134--->", B134);
     // calculateAblauf();
 
     function nettoCalc(brutto, stkl, EingabeB, EingabeDateType, type, i) {
