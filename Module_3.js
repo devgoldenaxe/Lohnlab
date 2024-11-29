@@ -1066,11 +1066,11 @@ function faktoren(data, Daten) {
         console.log("B264 - ", B264);
         console.log("B265 - ", B265);
 
-        // return {
-        //     B230: B230,
-        //     B260: B260,
-        //     B265: B265,
-        // };
+        return {
+            B230: B230,
+            B260: B260,
+            B265: B265,
+        };
     }
     // calculateAblauf();
 
