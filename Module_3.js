@@ -859,6 +859,9 @@ function faktoren(data, Daten) {
                 : Math.floor(B261 / 360);
         let B265 = B15 > 0 ? B264 : 0;
         console.log("B229--->", B229);
+        console.log("B226--->", B226);
+        console.log("B223--->", B223);
+        console.log("B134--->", B134);
         return {
             B230: B230,
             B260: B260,
