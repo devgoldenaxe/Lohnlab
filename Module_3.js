@@ -36,9 +36,7 @@ function faktoren(data, Daten) {
     ];
 
     // bb = 6;
-    let EingabeG = [
-        0.0, 0.0, 0.0, 9.0, 14.6, 1.7, 0.0, 0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    ];
+
     let EingabeB = [0.0, 0, 0, 9, 14.6, 1.7, 0, 0, 0, 0, 0, 0.0, 0.0];
     // let Eingabe = { stkl: 5, brutto: 3490.88 };
     let result;
@@ -112,7 +110,7 @@ function faktoren(data, Daten) {
 
     function berechnungCalc(brutto, stkl) {
         let Eingabe = [0, 0, 1979.74, brutto, 2, stkl]; // brutto = 3490.88, stkl = 5
-        Eingabe.push(...EingabeB); // EingabeG = [0.0, 0, 0, 9, 14.6, 1.7, 0, 1, 0, 0, 0, 0.0, 0.0]
+        Eingabe.push(...EingabeB);
         let R5 = 0.25;
         let R6 = 0.5;
         let R7 = 0.75;
@@ -496,16 +494,12 @@ function faktoren(data, Daten) {
             C11: C11,
         };
     }
-    // let brutto = 3490.88;
-    // let stkl = 5;
-    // let EingabeG = [0.0, 0, 0, 9, 14.6, 1.7, 0, 1, 0, 0, 0, 0.0, 0.0];
-    // Berechnungcalc(brutto, stkl, EingabeB);
 
     //function calculateAblauf
 
     function calculateAblauf(brutto, stkl, EingabeB) {
-        let Eingabe = [0, 0, 1979.74, brutto, 2, stkl]; // brutto = 3490.88, stkl = 5
-        Eingabe.push(...EingabeB); // EingabeG = [0.0, 0, 0, 9, 14.6, 1.7, 0, 1, 0, 0, 0, 0.0, 0.0]
+        let Eingabe = [0, 0, 1979.74, brutto, 2, stkl];
+        Eingabe.push(...EingabeB);
 
         let B2 = Eingabe[6] !== 0 ? 1 : 0;
         let B3 = 0;
@@ -535,8 +529,8 @@ function faktoren(data, Daten) {
         let B33 = 62100;
         let B34 = B7 / 2 / 100 + 0.07;
         let B35 = 0.0085 + 0.07;
-        let B36 = B13 == 1 ? 0.022 : 0.17; // B13 === 1 ? 0 : B13 === 2 ? 0.22 : 0.017;
-        let B37 = B13 == 1 ? 0.012 : 0.17; // B13 === 1 ? 0 : B13 === 2 ? 0.012 : 0.017;
+        let B36 = B13 == 1 ? 0.022 : 0.017; // B13 === 1 ? 0 : B13 === 2 ? 0.22 : 0.017;
+        let B37 = B13 == 1 ? 0.012 : 0.017; // B13 === 1 ? 0 : B13 === 2 ? 0.012 : 0.017;
         let B38 = B14 == 1 ? B36 + 0.006 : B36; // B14 ? B36 + 0.006 : B36;
         let B39 = 13279;
         let B40 = 33380;
